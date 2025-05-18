@@ -13,8 +13,8 @@
         <input type="email" name="email" id="email" placeholder="Uw e-mail" value="<?= isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : '' ?>" required autofocus>
         <label for="password">Uw wachtwoord</label>
         <input type="password" name="password" id="password" placeholder="Uw wachtwoord" required>
-        <label for="confirm-password">Herhaal wachtwoord</label>
-        <input type="password" name="confirm-password" id="confirm-password" placeholder="Uw wachtwoord" required>
+        <label for="confirm_password">Herhaal wachtwoord</label>
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Uw wachtwoord" required>
         <input type="submit" value="Maak account aan" class="button-primary">
     </form>
 </main>

@@ -28,20 +28,34 @@ if ($vehicle_id) {
     }
 }
 
-// If no vehicle found in database or if ID is 'citroen', use fallback data
-if (!$vehicle || $vehicle_id === 'citroen') {
+// If no vehicle found in database or if ID is specific, use fallback data
+if (!$vehicle || in_array($vehicle_id, ['citroen', 'volkswagen'])) {
     // Fallback data for display
-    $vehicle = [
-        'brand' => 'Citroën',
-        'model' => 'Berlingo',
-        'category' => 'Transport',
-        'image_url' => 'assets/images/citroene.avif',
-        'description' => 'De Citroën Berlingo combineert functionaliteit met comfort. Deze compacte bedrijfswagen biedt een verrassend ruim laadvolume van 3,3m³ en heeft innovatieve schuifdeuren aan beide zijden voor gemakkelijke toegang. Perfect voor stedelijk gebruik.',
-        'capacity' => '3 People',
-        'transmission' => 'Manual',
-        'fuel_capacity' => '50l',
-        'price' => '89.00'
-    ];
+    if ($vehicle_id === 'volkswagen') {
+        $vehicle = [
+            'brand' => 'Volkswagen',
+            'model' => 'Transporter',
+            'category' => 'Transport',
+            'image_url' => 'assets/images/bedrijfswagen2.png',
+            'description' => 'De Volkswagen Transporter is een legendarische bedrijfswagen met een ruim interieur en comfortabele rijervaring. Met plaats voor maximaal 8 personen en veel bagageruimte is deze bedrijfswagen perfect voor groepstransport. De betrouwbare motor en veelzijdige laadmogelijkheden maken hem ideaal voor diverse zakelijke doeleinden.',
+            'capacity' => '8 People',
+            'transmission' => 'Manual',
+            'fuel_capacity' => '70l',
+            'price' => '95.00'
+        ];
+    } else {
+        $vehicle = [
+            'brand' => 'Citroën',
+            'model' => 'Berlingo',
+            'category' => 'Transport',
+            'image_url' => 'assets/images/citroene.avif',
+            'description' => 'De Citroën Berlingo combineert functionaliteit met comfort. Deze compacte bedrijfswagen biedt een verrassend ruim laadvolume van 3,3m³ en heeft innovatieve schuifdeuren aan beide zijden voor gemakkelijke toegang. Perfect voor stedelijk gebruik.',
+            'capacity' => '3 People',
+            'transmission' => 'Manual',
+            'fuel_capacity' => '50l',
+            'price' => '89.00'
+        ];
+    }
 }
 
 // Ensure we have a full vehicle name

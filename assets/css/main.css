@@ -1,4 +1,3 @@
-
 @charset "UTF-8";
 * {
   font-family: "Plus Jakarta Sans";
@@ -727,10 +726,13 @@ footer .footer-links .links ul a {
   position: relative;
   flex: 2;
   min-width: auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 .topbar form input[type=search] {
-  padding: 10px 40px 10px 40px; /* ruimte voor icoon links */
-  width: 80%;
+  padding: 10px 40px 10px 15px;
+  width: 100%;
   border: 1px solid #C3D4E9;
   border-radius: 70px;
   font-size: 14px;
@@ -742,14 +744,23 @@ footer .footer-links .links ul a {
   border-color: #3563e9;
   box-shadow: 0 0 0 2px rgba(53, 99, 233, 0.2);
 }
-.topbar form img {
+.topbar form .search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
   position: absolute;
+  right: 15px;
   top: 50%;
-  left: 12px;
   transform: translateY(-50%);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.topbar form .search-icon {
   width: 20px;
   height: 20px;
-  pointer-events: none;
 }
 .topbar nav ul {
   display: flex;
@@ -820,23 +831,53 @@ footer .footer-links .links ul a {
 }
 
 .car-detail .grid {
-  gap: 50px;
+  gap: 30px;
+  margin-bottom: 40px;
 }
+
+.car-detail .grid .row {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.car-detail .grid .row.white-background {
+  padding: 25px;
+}
+
+.car-detail .advertorial {
+  min-height: 350px;
+  display: flex;
+  justify-content: center;
+}
+
+.car-detail .advertorial h2 {
+  font-size: 32px;
+  max-width: 70%;
+}
+
+.car-detail .advertorial p {
+  max-width: 70%;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.car-detail .advertorial img {
+  max-width: 50%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
 .car-detail .grid .car-type .row {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0F0F0;
 }
-.car-detail .call-to-action {
-  display: flex;
-  padding-top: 5em;
-}
-.car-detail .call-to-action .row {
-  justify-content: left !important;
-  align-items: center;
-}
-.car-detail .call-to-action .row:last-of-type {
-  display: flex;
-  justify-content: flex-end !important;
+
+.car-detail .grid .car-type .row:last-child {
+  border-bottom: none;
 }
 
 .section-header {
@@ -1371,6 +1412,120 @@ footer .footer-links .links ul a {
 .page-indicator {
   font-size: 14px;
   color: #90A3BF;
+}
+
+/* Car Specification Styles */
+.car-detail ul.car-specs {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.car-detail ul.car-specs li {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #F6F7F9;
+  border-radius: 8px;
+}
+
+.car-detail ul.car-specs li strong {
+  margin-right: 8px;
+  color: #3563E9;
+  min-width: 120px;
+}
+
+.car-detail .car-note {
+  background-color: #F9F9FB;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #3563E9;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #596780;
+  line-height: 1.5;
+}
+
+.car-detail .car-note a {
+  color: #3563E9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.car-detail .car-note a:hover {
+  text-decoration: underline;
+}
+
+.car-detail h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A202C;
+  margin: 25px 0 15px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.car-detail h3:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #3563E9;
+  border-radius: 2px;
+}
+
+.car-detail .call-to-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #F0F0F0;
+}
+
+.car-detail .call-to-action .row {
+  display: flex;
+  align-items: center;
+}
+
+.car-detail .call-to-action .row.price-display {
+  font-size: 24px;
+  color: #1A202C;
+}
+
+.car-detail .call-to-action .row:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.car-detail .call-to-action .button-primary {
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-display .font-weight-bold {
+  font-size: 28px;
+  color: #3563E9;
+  font-weight: 700;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #90A3BF;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=main.css.map */

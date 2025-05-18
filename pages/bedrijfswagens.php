@@ -92,28 +92,7 @@
         <a class="button-primary" href="#" id="toggle-button">Toon alle</a>
     </div>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleButton = document.getElementById('toggle-button');
-            const hiddenCars = document.querySelector('.hidden-cars');
-            
-            toggleButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Toggle visibility of hidden cars
-                if (hiddenCars.style.display === 'none') {
-                    hiddenCars.style.display = 'contents';
-                    toggleButton.textContent = 'Toon minder';
-                } else {
-                    hiddenCars.style.display = 'none';
-                    toggleButton.textContent = 'Toon alle';
-                    
-                    // Scroll back to recommended cars section
-                    document.getElementById('recommended-cars').scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+    <script src="assets/javascript/showMore.js"></script>
     </main>
 
 <?php require "includes/footer.php" ?> 

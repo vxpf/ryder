@@ -20,9 +20,11 @@
             Rydr.
         </a>
     </div>
-    <form action="">
-        <input type="search" name="" id="" placeholder="Welke auto wilt u huren?">
-        <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
+    <form action="search" method="GET">
+        <input type="search" name="query" id="search-input" placeholder="Welke auto wilt u huren?">
+        <button type="submit" class="search-button">
+            <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
+        </button>
     </form>
     <nav>
         <ul>
@@ -34,16 +36,20 @@
     <div class="menu">
         <?php if(isset($_SESSION['id'])){ ?>
         <div class="account">
-            <img src="assets/images/profil.png" alt="">
+            <img src="<?= isset($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : 'assets/images/profil.png' ?>" alt="Profielfoto" class="profile-img">
             <div class="account-dropdown">
                 <ul>
-                    <li><img src="assets/images/icons/setting.svg" alt=""><a href="#">Naar account</a></li>
+                    <li><img src="assets/images/icons/setting.svg" alt=""><a href="/account-beheer">Mijn Account</a></li>
+                    <li><img src="assets/images/icons/heart.svg" alt=""><a href="/mijn-favorieten">Mijn Favorieten</a></li>
                     <li><img src="assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
                 </ul>
             </div>
         </div>
         <?php }else{ ?>
-            <a href="" class="button-primary">Start met huren</a>
+            <div class="auth-buttons">
+                <a href="/login-form" class="button-secondary">Inloggen</a>
+                <a href="/register-form" class="button-primary">Registreren</a>
+            </div>
         <?php } ?>
 
     </div>

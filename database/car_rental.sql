@@ -47,6 +47,29 @@ INSERT INTO cars (brand, model, type, category, image_url, description, capacity
 ('Fiat', 'Ducato', 'business', 'Transport', 'assets/images/bedrijfswagens/bedrijfswagen7.jpg', 'De Fiat Ducato is een grote bedrijfswagen met een laadvolume tot 17m³ en een payload tot 2.200 kg. De MultiJet-motoren bieden een uitstekende combinatie van kracht en zuinigheid voor zwaar transport.', '3 Personen', 'Schakel', '90l', 99.00),
 ('Iveco', 'Daily', 'business', 'Transport', 'assets/images/bedrijfswagens/bedrijfswagen8.jpg', 'De Iveco Daily onderscheidt zich door zijn robuuste constructie en veelzijdigheid. Met een laadvolume tot 19,6m³ en een trekvermogen tot 3.500 kg is geen enkele taak te groot. De geavanceerde connectiviteitsfuncties maken wagenparkbeheer eenvoudig.', '3 Personen', 'Schakel', '100l', 105.00);
 
+-- Create account table
+CREATE TABLE IF NOT EXISTS account (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    profile_photo VARCHAR(255) DEFAULT 'assets/images/default-profile.png',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Create favorites table
+CREATE TABLE IF NOT EXISTS favorites (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    car_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY user_car_unique (user_id, car_id),
+    FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
+    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
+);
+
 -- Create users table
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
