@@ -102,7 +102,7 @@ $car_full_name = trim($car['brand'] . ' ' . ($car['model'] ?? ''));
             
             <p class="car-note">
                 * All prices include taxes. Fuel and insurance are included in the rental price.
-                View our <a href="#">terms and conditions</a> for more information.
+                View our <a href="/terms-and-conditions">terms and conditions</a> for more information.
             </p>
         </div>
     </div>

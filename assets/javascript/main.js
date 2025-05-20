@@ -15,16 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Modal functionality
-    const startButton = document.querySelector('.button-primary');
-    if (startButton) {
-        startButton.addEventListener('click', function(e) {
+    // Modal functionality - ONLY for the specific register button in the header
+    // Using a much more specific selector to ensure we only get the register button in the header
+    const headerRegisterButton = document.querySelector('.topbar .auth-buttons a[href="/register-form"]');
+    if (headerRegisterButton) {
+        headerRegisterButton.addEventListener('click', function(e) {
             e.preventDefault();
             const modal = document.getElementById('loginModal');
             if (modal) modal.classList.remove('hidden');
         });
     }
 
+    // Modal close functionality
     const modalClose = document.querySelector('.modal-close');
     if (modalClose) {
         modalClose.addEventListener('click', function () {

@@ -1,3 +1,29 @@
+.auth-topbar {
+  box-shadow: none !important;
+  padding: 2em 4em !important;
+  
+  .logo {
+    justify-content: center;
+  }
+}
+
+.succes-message, .error-message {
+  transition: opacity 0.3s ease-out;
+  padding: 1em;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+.succes-message {
+  background-color: #cdffcd;
+  color: #2d5a2d;
+}
+
+.error-message {
+  background-color: #ffcdcd;
+  color: #5a2d2d;
+}
+
 .account-form{
   margin: 0 auto;
   padding: 2em;

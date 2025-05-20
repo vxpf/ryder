@@ -72,57 +72,6 @@
         </div>
 
         <div class="car-listings">
-            <div class="listings-header">
-                <div class="listing-tabs">
-                    <div class="tab active">
-                        <span>Pick-Up</span>
-                        <div class="tab-details">
-                            <div class="location-field">
-                                <label>Locatie</label>
-                                <select>
-                                    <option>Amsterdam</option>
-                                </select>
-                            </div>
-                            <div class="date-field">
-                                <label>Datum</label>
-                                <select>
-                                    <option>7 Juli 2023</option>
-                                </select>
-                            </div>
-                            <div class="time-field">
-                                <label>Tijd</label>
-                                <select>
-                                    <option>10:00</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <span>Drop-Off</span>
-                        <div class="tab-details">
-                            <div class="location-field">
-                                <label>Locatie</label>
-                                <select>
-                                    <option>Amsterdam</option>
-                                </select>
-                            </div>
-                            <div class="date-field">
-                                <label>Datum</label>
-                                <select>
-                                    <option>10 Juli 2023</option>
-                                </select>
-                            </div>
-                            <div class="time-field">
-                                <label>Tijd</label>
-                                <select>
-                                    <option>12:00</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="car-grid">
                 <?php
                 $vehicles = [
@@ -311,7 +260,7 @@
 
 <style>
 .car-image img {
-    height: 120px;
+    height: 200px;
     object-fit: contain;
 }
 </style>

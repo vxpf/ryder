@@ -10,7 +10,8 @@ require_once $connectionPath;
 
 // Check if email and password are provided
 if (empty($_POST['email']) || empty($_POST['password'])) {
-    header('Location: ../login.php?error=empty');
+    $_SESSION['error'] = 'Vul alle velden in.';
+    header('Location: /login-form');
     exit;
 }
 
@@ -31,7 +32,8 @@ try {
         exit;
     } else {
         // Invalid credentials
-        header('Location: ../login.php?error=invalid');
+        $_SESSION['error'] = 'Ongeldige e-mail of wachtwoord.';
+        header('Location: /login-form');
         exit;
     }
 } catch (PDOException $e) {
@@ -39,6 +41,7 @@ try {
     error_log("Login error: " . $e->getMessage());
     
     // Redirect with a generic error message
-    header('Location: ../login.php?error=system');
+    $_SESSION['error'] = 'Er is een systeemfout opgetreden. Probeer het later opnieuw.';
+    header('Location: /login-form');
     exit;
 }

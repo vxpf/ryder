@@ -1,4 +1,3 @@
-
 <footer>
     <div class="brand">
         <h2>Rydr.</h2>
@@ -42,7 +41,7 @@
     <div class="legal-links">
         <ul>
             <li><a href="#">Privacy & Policy</a></li>
-            <li><a href="#">Terms & Condition</a></li>
+            <li><a href="/terms-and-conditions">Terms & Condition</a></li>
         </ul>
     </div>
 </div>
@@ -51,8 +50,8 @@
         <h2>Welkom bij Rydr</h2>
         <p>Kies hoe je verder wilt gaan:</p>
         <div class="modal-actions">
-            <a href="/login-form" class="button-secondary">Inloggen</a>
-            <a href="/register-form" class="button-primary">Account aanmaken</a>
+            <a href="/login-form" class="button-secondary modal-login-btn">Inloggen</a>
+            <a href="/register-form" class="modal-register-btn button-primary">Account aanmaken</a>
         </div>
         <button class="modal-close">&times;</button>
     </div>
