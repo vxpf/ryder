@@ -25,12 +25,7 @@ if (session_status() === PHP_SESSION_NONE) {
             Rydr.
         </a>
     </div>
-    <form action="search" method="GET">
-        <input type="search" name="query" id="search-input" placeholder="Welke auto wilt u huren?">
-        <button type="submit" class="search-button">
-            <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
-        </button>
-    </form>
+    <!-- Search bar removed -->
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -59,4 +54,4 @@ if (session_status() === PHP_SESSION_NONE) {
 
     </div>
 </div>
-<div class="content">
+<div class="content"> 

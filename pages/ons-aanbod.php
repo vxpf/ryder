@@ -213,13 +213,13 @@
                     $capacity = $vehicle['specs']['capacity'] ?? "2 People";
                 ?>
                 <div class="car-card">
+                    <div class="favorite-icon <?= $vehicle['favorite'] ? 'active' : '' ?>" data-car-id="<?= $vehicle['id'] ?>">
+                        <i class="fa <?= $vehicle['favorite'] ? 'fa-heart' : 'fa-heart-o' ?>"></i>
+                    </div>
                     <div class="car-header">
                         <div class="car-info">
                             <h3><?= $vehicle['brand'] ?></h3>
                             <span class="car-type"><?= $vehicle['type'] ?></span>
-                        </div>
-                        <div class="favorite-icon <?= $vehicle['favorite'] ? 'active' : '' ?>">
-                            <i class="fa <?= $vehicle['favorite'] ? 'fa-heart' : 'fa-heart-o' ?>"></i>
                         </div>
                     </div>
                     <div class="car-image">
@@ -251,7 +251,7 @@
             </div>
 
             <div class="pagination">
-                <button class="show-more-btn">Toon alle auto's</button>
+                <button class="show-more-btn">Show more car's</button>
                 <div class="page-indicator">12/12</div>
             </div>
         </div>
@@ -263,8 +263,71 @@
     height: 200px;
     object-fit: contain;
 }
+
+.car-card {
+    position: relative;
+}
+
+.favorite-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.favorite-icon:hover {
+    transform: scale(1.1);
+}
+
+.favorite-icon.active i {
+    color: #ff3b58;
+}
+
+.favorite-icon i {
+    font-size: 18px;
+    color: #ccc;
+}
 </style>
 
 <script src="assets/javascript/filters.js"></script>
+<script src="/assets/js/favorites.js"></script>
+<script>
+// Initialize favorite icons to work with the favorites.js functionality
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.favorite-icon').forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isLoggedIn = document.body.classList.contains('logged-in');
+            
+            if (!isLoggedIn) {
+                // If there's a showLoginPrompt function available from favorites.js
+                if (typeof showLoginPrompt === 'function') {
+                    showLoginPrompt();
+                } else {
+                    window.location.href = '/login-form';
+                }
+                return;
+            }
+            
+            const carId = this.getAttribute('data-car-id');
+            if (typeof toggleFavorite === 'function') {
+                toggleFavorite(carId, this);
+            }
+        });
+    });
+});
+</script>
 
 <?php require "includes/footer.php" ?>

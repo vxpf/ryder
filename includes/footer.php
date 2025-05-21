@@ -1,7 +1,7 @@
 <footer>
     <div class="brand">
         <h2>Rydr.</h2>
-        <p>Stap in. Rij weg. Simpel.</p>
+        <p>Get in the car. Drive away. Simple as that.</p>
     </div>
     <div class="footer-links">
         <div class="links">
@@ -40,7 +40,7 @@
     </div>
     <div class="legal-links">
         <ul>
-            <li><a href="#">Privacy & Policy</a></li>
+            <li><a href="/privacy-policy">Privacy & Policy</a></li>
             <li><a href="/terms-and-conditions">Terms & Condition</a></li>
         </ul>
     </div>

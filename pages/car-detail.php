@@ -1,7 +1,28 @@
-<?php require "includes/header.php" ?>
-<?php require "includes/db_connect.php" ?>
+<?php require "includes/header.php"; ?>
+<?php require "includes/db_connect.php"; ?>
 
 <?php
+// Check if user is logged in
+$is_logged_in = isset($_SESSION['id']);
+$is_favorite = false;
+
+// Check if car is in user's favorites
+if ($is_logged_in && isset($_GET['id'])) {
+    $car_id = $_GET['id'];
+    $user_id = $_SESSION['id'];
+    
+    try {
+        $favorite_check = $conn->prepare("SELECT id FROM favorites WHERE user_id = :user_id AND car_id = :car_id");
+        $favorite_check->bindParam(':user_id', $user_id);
+        $favorite_check->bindParam(':car_id', $car_id);
+        $favorite_check->execute();
+        
+        $is_favorite = $favorite_check->rowCount() > 0;
+    } catch (PDOException $e) {
+        // Silently fail
+    }
+}
+
 // Get the car ID from the URL parameter
 $car_id = $_GET['id'] ?? null;
 
@@ -32,6 +53,7 @@ if ($car_id) {
 if (!$car) {
     // Fallback data for display
     $car = [
+        'id' => 1, // Add default ID for fallback data
         'brand' => 'Koenigsegg',
         'model' => '',
         'category' => 'Sport',
@@ -48,13 +70,22 @@ if (!$car) {
 // Ensure we have a full car name
 $car_full_name = trim($car['brand'] . ' ' . ($car['model'] ?? ''));
 ?>
+
+<!-- Add Font Awesome for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
 <main class="car-detail">
     <div class="grid">
         <div class="row">
             <div class="advertorial">
+                <button class="favorite-button <?= $is_favorite ? 'active' : '' ?>" data-car-id="<?= htmlspecialchars($car['id'] ?? 1) ?>">
+                    <i class="fas fa-heart"></i>
+                </button>
                 <h2><?= htmlspecialchars($car_full_name) ?> - Ultieme rijervaring</h2>
                 <p>Ervaar de kracht en het raffinement van deze geweldige auto</p>
-                <img src="<?= htmlspecialchars($car['image_url']) ?>" alt="<?= htmlspecialchars($car_full_name) ?>">
+                <div class="car-image-container">
+                    <img src="<?= htmlspecialchars($car['image_url']) ?>" alt="<?= htmlspecialchars($car_full_name) ?>">
+                </div>
                 <img src="assets/images/header-circle-background.svg" alt="" class="background-header-element">
             </div>
         </div>
@@ -119,6 +150,91 @@ $car_full_name = trim($car['brand'] . ' ' . ($car['model'] ?? ''));
     margin-right: 10px;
     font-size: 0.9em;
 }
+.advertorial {
+    position: relative;
+}
+.favorite-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: #ccc;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.favorite-button.active {
+    color: #ff3b58;
+}
+.favorite-button:hover {
+    transform: scale(1.1);
+}
 </style>
+
+<!-- Add favorites JavaScript -->
+<script src="/assets/js/favorites.js"></script>
+
+<!-- Mark the body as logged in if user is logged in -->
+<?php if ($is_logged_in): ?>
+<script>
+    console.log("User is logged in with ID: <?= $_SESSION['id'] ?>");
+    document.body.classList.add('logged-in');
+</script>
+<?php else: ?>
+<script>
+    console.log("User is NOT logged in");
+</script>
+<?php endif; ?>
+
+<!-- Debug script to help identify the issue -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add debugging for favorite button clicks
+    document.querySelectorAll('.favorite-button').forEach(button => {
+        button.addEventListener('click', function() {
+            console.log('Favorite button clicked');
+            console.log('Car ID:', this.getAttribute('data-car-id'));
+            console.log('Is logged in:', document.body.classList.contains('logged-in'));
+        });
+    });
+    
+    // Override fetch for debugging
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        console.log('Fetch request to:', url);
+        console.log('Fetch options:', options);
+        
+        return originalFetch(url, options)
+            .then(response => {
+                console.log('Fetch response status:', response.status);
+                console.log('Fetch response OK:', response.ok);
+                // Clone the response so we can log it and still use it
+                const clone = response.clone();
+                clone.text().then(text => {
+                    try {
+                        const json = JSON.parse(text);
+                        console.log('Response JSON:', json);
+                    } catch (e) {
+                        console.log('Response text:', text);
+                    }
+                });
+                return response;
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                throw error;
+            });
+    };
+});
+</script>
 
 <?php require "includes/footer.php" ?>

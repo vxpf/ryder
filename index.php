@@ -9,8 +9,8 @@
  * dan zoekt dit bestand in de 'pages'-folder het bestand auto-huren.php.
  *
  * Waarom doen we dit?
- *  - We krijgen er mooiere URL’s door (auto-huren in plaats van auto-huren.php).
- *  - We kunnen hier één keer logica schrijven voor “wat als de pagina niet bestaat”.
+ *  - We krijgen er mooiere URL's door (auto-huren in plaats van auto-huren.php).
+ *  - We kunnen hier één keer logica schrijven voor "wat als de pagina niet bestaat".
  *  - (Buiten het niveau van dit project) We kunnen ook hier logica toevoegen
  *    om te controleren of iemand is ingelogd, in plaats van dat per pagina te herhalen.
  *
@@ -35,6 +35,28 @@ if ($path === 'login-handler') {
 
 if ($path === 'register-handler') {
     require_once __DIR__ . '/actions/register.php';
+    exit;
+}
+
+if ($path === 'update-profile') {
+    require_once __DIR__ . '/actions/update-profile.php';
+    exit;
+}
+
+// Add profile page direct routing
+if ($path === 'profile') {
+    require_once __DIR__ . '/pages/profile.php';
+    exit;
+}
+
+// Ensure the toggle-favorite route is correctly defined
+if ($path === 'toggle-favorite') {
+    require_once __DIR__ . '/actions/toggle-favorite.php';
+    exit;
+}
+
+if ($path === 'mijn-favorieten') {
+    require_once __DIR__ . '/pages/my-favorites.php';
     exit;
 }
 

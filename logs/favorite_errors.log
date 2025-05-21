@@ -1,0 +1,1100 @@
+[2025-05-20 14:41:09] Request received. Method: POST
+[2025-05-20 14:41:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:41:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:41:09] Processing request for car_id: 1 and account_id: 4
+[2025-05-20 14:41:09] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_id' in 'where clause'
+[2025-05-20 14:41:10] Request received. Method: POST
+[2025-05-20 14:41:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:41:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:41:10] Processing request for car_id: 1 and account_id: 4
+[2025-05-20 14:41:10] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_id' in 'where clause'
+[2025-05-20 14:41:10] Request received. Method: POST
+[2025-05-20 14:41:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:41:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:41:10] Processing request for car_id: 1 and account_id: 4
+[2025-05-20 14:41:10] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_id' in 'where clause'
+[2025-05-20 14:41:10] Request received. Method: POST
+[2025-05-20 14:41:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:41:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:41:10] Processing request for car_id: 1 and account_id: 4
+[2025-05-20 14:41:10] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_id' in 'where clause'
+[2025-05-20 14:45:06] Request received. Method: POST
+[2025-05-20 14:45:06] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:06] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:06] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:06] Check favorite result: 0 rows found
+[2025-05-20 14:45:06] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:08] Request received. Method: POST
+[2025-05-20 14:45:08] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:08] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:08] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:08] Check favorite result: 0 rows found
+[2025-05-20 14:45:08] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:09] Request received. Method: POST
+[2025-05-20 14:45:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:09] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:09] Check favorite result: 0 rows found
+[2025-05-20 14:45:09] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:09] Request received. Method: POST
+[2025-05-20 14:45:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:09] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:09] Check favorite result: 0 rows found
+[2025-05-20 14:45:09] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:09] Request received. Method: POST
+[2025-05-20 14:45:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:09] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:09] Check favorite result: 0 rows found
+[2025-05-20 14:45:09] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:09] Request received. Method: POST
+[2025-05-20 14:45:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:09] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:09] Check favorite result: 0 rows found
+[2025-05-20 14:45:09] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:09] Request received. Method: POST
+[2025-05-20 14:45:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:09] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:09] Check favorite result: 0 rows found
+[2025-05-20 14:45:09] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:09] Request received. Method: POST
+[2025-05-20 14:45:09] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:09] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:09] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:09] Check favorite result: 0 rows found
+[2025-05-20 14:45:09] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:10] Request received. Method: POST
+[2025-05-20 14:45:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:10] Check favorite result: 0 rows found
+[2025-05-20 14:45:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:10] Request received. Method: POST
+[2025-05-20 14:45:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:10] Check favorite result: 0 rows found
+[2025-05-20 14:45:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:10] Request received. Method: POST
+[2025-05-20 14:45:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:10] Check favorite result: 0 rows found
+[2025-05-20 14:45:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:10] Request received. Method: POST
+[2025-05-20 14:45:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:10] Check favorite result: 0 rows found
+[2025-05-20 14:45:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:10] Request received. Method: POST
+[2025-05-20 14:45:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:10] Check favorite result: 0 rows found
+[2025-05-20 14:45:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:10] Request received. Method: POST
+[2025-05-20 14:45:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:10] Check favorite result: 0 rows found
+[2025-05-20 14:45:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:11] Request received. Method: POST
+[2025-05-20 14:45:11] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:11] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:11] Check favorite result: 0 rows found
+[2025-05-20 14:45:11] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:11] Request received. Method: POST
+[2025-05-20 14:45:11] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:11] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:11] Check favorite result: 0 rows found
+[2025-05-20 14:45:11] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:11] Request received. Method: POST
+[2025-05-20 14:45:11] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:11] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:11] Check favorite result: 0 rows found
+[2025-05-20 14:45:11] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:11] Request received. Method: POST
+[2025-05-20 14:45:11] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:11] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:11] Check favorite result: 0 rows found
+[2025-05-20 14:45:11] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:11] Request received. Method: POST
+[2025-05-20 14:45:11] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:11] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:11] Check favorite result: 0 rows found
+[2025-05-20 14:45:11] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:11] Request received. Method: POST
+[2025-05-20 14:45:11] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:11] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:11] Check favorite result: 0 rows found
+[2025-05-20 14:45:11] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:12] Request received. Method: POST
+[2025-05-20 14:45:12] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:12] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:12] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:12] Check favorite result: 0 rows found
+[2025-05-20 14:45:12] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:15] Request received. Method: POST
+[2025-05-20 14:45:15] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:15] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:15] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:15] Check favorite result: 0 rows found
+[2025-05-20 14:45:15] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:16] Request received. Method: POST
+[2025-05-20 14:45:16] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:16] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:16] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:16] Check favorite result: 0 rows found
+[2025-05-20 14:45:16] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:16] Request received. Method: POST
+[2025-05-20 14:45:16] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:16] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:16] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:16] Check favorite result: 0 rows found
+[2025-05-20 14:45:16] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:16] Request received. Method: POST
+[2025-05-20 14:45:16] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:16] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:16] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:16] Check favorite result: 0 rows found
+[2025-05-20 14:45:16] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:16] Request received. Method: POST
+[2025-05-20 14:45:16] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:16] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:16] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:16] Check favorite result: 0 rows found
+[2025-05-20 14:45:16] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:16] Request received. Method: POST
+[2025-05-20 14:45:16] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:16] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:16] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:16] Check favorite result: 0 rows found
+[2025-05-20 14:45:16] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:17] Request received. Method: POST
+[2025-05-20 14:45:17] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:17] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:17] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:17] Check favorite result: 0 rows found
+[2025-05-20 14:45:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:17] Request received. Method: POST
+[2025-05-20 14:45:17] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:17] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:17] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:17] Check favorite result: 0 rows found
+[2025-05-20 14:45:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:17] Request received. Method: POST
+[2025-05-20 14:45:17] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:17] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:17] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:17] Check favorite result: 0 rows found
+[2025-05-20 14:45:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:17] Request received. Method: POST
+[2025-05-20 14:45:17] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:17] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:17] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:17] Check favorite result: 0 rows found
+[2025-05-20 14:45:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:17] Request received. Method: POST
+[2025-05-20 14:45:17] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:17] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:17] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:17] Check favorite result: 0 rows found
+[2025-05-20 14:45:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:17] Request received. Method: POST
+[2025-05-20 14:45:17] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:17] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:17] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:17] Check favorite result: 0 rows found
+[2025-05-20 14:45:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:18] Request received. Method: POST
+[2025-05-20 14:45:18] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:18] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:18] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:18] Check favorite result: 0 rows found
+[2025-05-20 14:45:18] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:18] Request received. Method: POST
+[2025-05-20 14:45:18] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:18] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:18] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:18] Check favorite result: 0 rows found
+[2025-05-20 14:45:18] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:18] Request received. Method: POST
+[2025-05-20 14:45:18] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:18] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:18] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:18] Check favorite result: 0 rows found
+[2025-05-20 14:45:18] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:18] Request received. Method: POST
+[2025-05-20 14:45:18] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:18] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:18] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:18] Check favorite result: 0 rows found
+[2025-05-20 14:45:18] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:18] Request received. Method: POST
+[2025-05-20 14:45:18] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:18] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:18] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:18] Check favorite result: 0 rows found
+[2025-05-20 14:45:18] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:19] Request received. Method: POST
+[2025-05-20 14:45:19] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:19] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:19] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:19] Check favorite result: 0 rows found
+[2025-05-20 14:45:19] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:19] Request received. Method: POST
+[2025-05-20 14:45:19] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:19] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:19] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:19] Check favorite result: 0 rows found
+[2025-05-20 14:45:19] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:19] Request received. Method: POST
+[2025-05-20 14:45:19] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:19] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:19] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:19] Check favorite result: 0 rows found
+[2025-05-20 14:45:19] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:19] Request received. Method: POST
+[2025-05-20 14:45:19] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:19] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:19] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:19] Check favorite result: 0 rows found
+[2025-05-20 14:45:19] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:19] Request received. Method: POST
+[2025-05-20 14:45:19] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:19] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:19] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:19] Check favorite result: 0 rows found
+[2025-05-20 14:45:19] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:19] Request received. Method: POST
+[2025-05-20 14:45:19] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:19] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:19] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:19] Check favorite result: 0 rows found
+[2025-05-20 14:45:19] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:20] Request received. Method: POST
+[2025-05-20 14:45:20] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:20] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:20] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:20] Check favorite result: 0 rows found
+[2025-05-20 14:45:20] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:20] Request received. Method: POST
+[2025-05-20 14:45:20] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:20] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:20] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:20] Check favorite result: 0 rows found
+[2025-05-20 14:45:20] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:45:28] Request received. Method: POST
+[2025-05-20 14:45:28] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:45:28] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:45:28] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:45:28] Check favorite result: 0 rows found
+[2025-05-20 14:45:28] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:50:32] Request received. Method: POST
+[2025-05-20 14:50:32] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 14:50:32] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:50:32] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 14:50:32] Check favorite result: 0 rows found
+[2025-05-20 14:50:32] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 14:57:10] Request received. Method: POST
+[2025-05-20 14:57:10] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-20 14:57:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 14:57:10] Processing request for car_id: 2 and user_id: 4
+[2025-05-20 14:57:10] Check favorite result: 0 rows found
+[2025-05-20 14:57:10] Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rental`.`favorites`, CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE)
+[2025-05-20 15:01:37] Request received. Method: POST
+[2025-05-20 15:01:37] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-20 15:01:37] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:01:37] Processing request for car_id: 2 and user_id: 4
+[2025-05-20 15:01:37] Check favorite result: 0 rows found
+[2025-05-20 15:01:37] Success: Car added to favorites
+[2025-05-20 15:01:48] Request received. Method: POST
+[2025-05-20 15:01:48] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-20 15:01:48] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:01:48] Processing request for car_id: 2 and user_id: 4
+[2025-05-20 15:01:48] Check favorite result: 1 rows found
+[2025-05-20 15:01:48] Success: Car removed from favorites
+[2025-05-20 15:01:49] Request received. Method: POST
+[2025-05-20 15:01:49] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-20 15:01:49] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:01:49] Processing request for car_id: 2 and user_id: 4
+[2025-05-20 15:01:49] Check favorite result: 0 rows found
+[2025-05-20 15:01:49] Success: Car added to favorites
+[2025-05-20 15:01:52] Request received. Method: POST
+[2025-05-20 15:01:52] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-20 15:01:52] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:01:52] Processing request for car_id: 2 and user_id: 4
+[2025-05-20 15:01:52] Check favorite result: 1 rows found
+[2025-05-20 15:01:52] Success: Car removed from favorites
+[2025-05-20 15:02:05] Request received. Method: POST
+[2025-05-20 15:02:05] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 15:02:05] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:02:05] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 15:02:05] Check favorite result: 0 rows found
+[2025-05-20 15:02:05] Success: Car added to favorites
+[2025-05-20 15:08:23] Request received. Method: POST
+[2025-05-20 15:08:23] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 15:08:23] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:08:23] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 15:08:23] Check favorite result: 1 rows found
+[2025-05-20 15:08:23] Success: Car removed from favorites
+[2025-05-20 15:14:55] Request received. Method: POST
+[2025-05-20 15:14:55] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 15:14:55] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:14:55] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 15:14:55] Check favorite result: 0 rows found
+[2025-05-20 15:14:55] Success: Car added to favorites
+[2025-05-20 15:15:52] Request received. Method: POST
+[2025-05-20 15:15:52] POST data: Array
+(
+    [car_id] => 4
+)
+
+[2025-05-20 15:15:52] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 15:15:52] Processing request for car_id: 4 and user_id: 4
+[2025-05-20 15:15:52] Check favorite result: 0 rows found
+[2025-05-20 15:15:52] Success: Car added to favorites
+[2025-05-20 16:43:10] Request received. Method: POST
+[2025-05-20 16:43:10] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 16:43:10] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 16:43:10] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 16:43:10] Check favorite result: 1 rows found
+[2025-05-20 16:43:10] Success: Car removed from favorites
+[2025-05-20 16:57:00] Request received. Method: POST
+[2025-05-20 16:57:00] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 16:57:00] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 16:57:00] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 16:57:00] Check favorite result: 0 rows found
+[2025-05-20 16:57:00] Success: Car added to favorites
+[2025-05-20 16:57:01] Request received. Method: POST
+[2025-05-20 16:57:01] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-20 16:57:01] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-20 16:57:01] Processing request for car_id: 1 and user_id: 4
+[2025-05-20 16:57:01] Check favorite result: 1 rows found
+[2025-05-20 16:57:01] Success: Car removed from favorites
+[2025-05-21 08:50:30] Request received. Method: POST
+[2025-05-21 08:50:30] POST data: Array
+(
+    [car_id] => 4
+)
+
+[2025-05-21 08:50:30] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 08:50:30] Processing request for car_id: 4 and user_id: 4
+[2025-05-21 08:50:30] Check favorite result: 1 rows found
+[2025-05-21 08:50:30] Success: Car removed from favorites
+[2025-05-21 08:50:47] Request received. Method: POST
+[2025-05-21 08:50:47] POST data: Array
+(
+    [car_id] => 4
+)
+
+[2025-05-21 08:50:47] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 08:50:47] Processing request for car_id: 4 and user_id: 4
+[2025-05-21 08:50:47] Check favorite result: 0 rows found
+[2025-05-21 08:50:47] Success: Car added to favorites
+[2025-05-21 08:50:47] Request received. Method: POST
+[2025-05-21 08:50:47] POST data: Array
+(
+    [car_id] => 4
+)
+
+[2025-05-21 08:50:47] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 08:50:47] Processing request for car_id: 4 and user_id: 4
+[2025-05-21 08:50:47] Check favorite result: 1 rows found
+[2025-05-21 08:50:47] Success: Car removed from favorites
+[2025-05-21 09:01:45] Request received. Method: POST
+[2025-05-21 09:01:45] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-21 09:01:45] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 09:01:45] Processing request for car_id: 2 and user_id: 4
+[2025-05-21 09:01:45] Check favorite result: 0 rows found
+[2025-05-21 09:01:45] Success: Car added to favorites
+[2025-05-21 09:03:04] Request received. Method: POST
+[2025-05-21 09:03:04] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-21 09:03:04] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 09:03:04] Processing request for car_id: 2 and user_id: 4
+[2025-05-21 09:03:04] Check favorite result: 1 rows found
+[2025-05-21 09:03:04] Success: Car removed from favorites
