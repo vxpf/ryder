@@ -94,7 +94,7 @@ $vehicle_full_name = trim($vehicle['brand'] . ' ' . ($vehicle['model'] ?? ''));
                         <?php endif; ?>
                         <span class="font-weight-bold">€<?= htmlspecialchars($vehicle['price']) ?></span> / day
                     </div>
-                    <div class="row"><a href="reserveren.php?car_id=<?= htmlspecialchars($vehicle['id'] ?? 13) ?>" class="button-primary">Rent Now</a></div>
+                    <div class="row"><a href="/reserveren?car_id=<?= htmlspecialchars($vehicle['id'] ?? 13) ?>" class="button-primary">Huur nu</a></div>
                 </div>
             </div>
         </div>
@@ -140,6 +140,32 @@ $vehicle_full_name = trim($vehicle['brand'] . ' ' . ($vehicle['model'] ?? ''));
     color: #999;
     margin-right: 10px;
     font-size: 0.9em;
+}
+.button-primary {
+    background-color: #3563E9;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(53, 99, 233, 0.3);
+}
+.button-primary:hover {
+    background-color: #2954d4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(53, 99, 233, 0.4);
+}
+.call-to-action {
+    margin-top: 20px;
+}
+.call-to-action .row {
+    margin-bottom: 15px;
 }
 </style>
 

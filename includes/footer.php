@@ -16,7 +16,7 @@
             <h3>Community</h3>
             <ul>
                 <li><a href="#">Events</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="/blog">Blog</a></li>
                 <li><a href="#">Podcast</a></li>
                 <li><a href="#">Invite a friend</a></li>
             </ul>
@@ -57,6 +57,7 @@
     </div>
 </div>
 <script src="assets/javascript/main.js"></script>
+<script src="assets/js/dark-mode.js"></script>
 
 </body>
 </html>

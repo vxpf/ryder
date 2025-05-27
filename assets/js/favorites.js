@@ -50,22 +50,15 @@ function toggleFavorite(carId, button) {
             if (data.is_favorite) {
                 // Add to favorites
                 button.classList.add('active');
-                if (button.classList.contains('favorite-button')) {
+                if (button.classList.contains('favorite-icon')) {
                     button.classList.add('active');
-                } else if (button.classList.contains('favorite-icon')) {
-                    button.classList.add('active');
-                    button.querySelector('i').classList.remove('fa-heart-o');
-                    button.querySelector('i').classList.add('fa-heart');
                 }
                 showNotification('Auto toegevoegd aan favorieten', 'success');
             } else {
                 // Remove from favorites
-                if (button.classList.contains('favorite-button')) {
+                button.classList.remove('active');
+                if (button.classList.contains('favorite-icon')) {
                     button.classList.remove('active');
-                } else if (button.classList.contains('favorite-icon')) {
-                    button.classList.remove('active');
-                    button.querySelector('i').classList.remove('fa-heart');
-                    button.querySelector('i').classList.add('fa-heart-o');
                 }
                 showNotification('Auto verwijderd uit favorieten', 'info');
             }

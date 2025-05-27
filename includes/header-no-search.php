@@ -13,6 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rydr</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
     <link rel="icon" type="image/png" href="assets/images/favicon.ico" sizes="32x32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,10 +31,14 @@ if (session_status() === PHP_SESSION_NONE) {
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/ons-aanbod">Ons aanbod</a></li>
-            <li><a href="#">Hulp nodig?</a></li>
+            <li><a href="/hulp-nodig">Hulp nodig?</a></li>
         </ul>
     </nav>
     <div class="menu">
+        <div class="dark-mode-toggle">
+            <img src="assets/images/icons/moon.svg" alt="Dark Mode" class="toggle-icon moon-icon">
+            <img src="assets/images/icons/sun.svg" alt="Light Mode" class="toggle-icon sun-icon">
+        </div>
         <?php if(isset($_SESSION['id'])){ ?>
         <div class="account">
             <img src="<?= isset($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : 'assets/images/profil.png' ?>" alt="Profielfoto" class="profile-img">

@@ -1098,3 +1098,438 @@
 [2025-05-21 09:03:04] Processing request for car_id: 2 and user_id: 4
 [2025-05-21 09:03:04] Check favorite result: 1 rows found
 [2025-05-21 09:03:04] Success: Car removed from favorites
+[2025-05-21 09:14:00] Request received. Method: POST
+[2025-05-21 09:14:00] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-21 09:14:00] Session data: Array
+(
+    [message] => This email is already in use.
+    [email] => jailon1@gmail.com
+    [id] => 5
+)
+
+[2025-05-21 09:14:00] Processing request for car_id: 1 and user_id: 5
+[2025-05-21 09:14:00] Check favorite result: 0 rows found
+[2025-05-21 09:14:00] Success: Car added to favorites
+[2025-05-21 09:44:08] Request received. Method: POST
+[2025-05-21 09:44:08] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-21 09:44:08] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 09:44:08] Processing request for car_id: 1 and user_id: 4
+[2025-05-21 09:44:08] Check favorite result: 0 rows found
+[2025-05-21 09:44:08] Success: Car added to favorites
+[2025-05-21 09:51:08] Request received. Method: POST
+[2025-05-21 09:51:08] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-21 09:51:08] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682c6a6d33170.jpg
+)
+
+[2025-05-21 09:51:08] Processing request for car_id: 1 and user_id: 4
+[2025-05-21 09:51:08] Check favorite result: 1 rows found
+[2025-05-21 09:51:08] Success: Car removed from favorites
+[2025-05-21 09:53:56] Request received. Method: POST
+[2025-05-21 09:53:56] POST data: Array
+(
+    [car_id] => 8
+)
+
+[2025-05-21 09:53:56] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682d8636314dd.jpg
+)
+
+[2025-05-21 09:53:56] Processing request for car_id: 8 and user_id: 4
+[2025-05-21 09:53:56] Check favorite result: 0 rows found
+[2025-05-21 09:53:56] Success: Car added to favorites
+[2025-05-21 09:53:56] Request received. Method: POST
+[2025-05-21 09:53:56] POST data: Array
+(
+    [car_id] => 8
+)
+
+[2025-05-21 09:53:56] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682d8636314dd.jpg
+)
+
+[2025-05-21 09:53:56] Processing request for car_id: 8 and user_id: 4
+[2025-05-21 09:53:56] Check favorite result: 1 rows found
+[2025-05-21 09:53:56] Success: Car removed from favorites
+[2025-05-21 22:42:28] Request received. Method: POST
+[2025-05-21 22:42:28] POST data: Array
+(
+    [car_id] => 7
+)
+
+[2025-05-21 22:42:28] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682d8636314dd.jpg
+)
+
+[2025-05-21 22:42:28] Processing request for car_id: 7 and user_id: 4
+[2025-05-21 22:42:28] Check favorite result: 0 rows found
+[2025-05-21 22:42:28] Success: Car added to favorites
+[2025-05-21 22:51:52] Request received. Method: POST
+[2025-05-21 22:51:52] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-21 22:51:52] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682d8636314dd.jpg
+)
+
+[2025-05-21 22:51:52] Processing request for car_id: 2 and user_id: 4
+[2025-05-21 22:51:52] Check favorite result: 0 rows found
+[2025-05-21 22:51:52] Success: Car added to favorites
+[2025-05-21 22:52:00] Request received. Method: POST
+[2025-05-21 22:52:00] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-21 22:52:00] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682d8636314dd.jpg
+)
+
+[2025-05-21 22:52:00] Processing request for car_id: 2 and user_id: 4
+[2025-05-21 22:52:00] Check favorite result: 1 rows found
+[2025-05-21 22:52:00] Success: Car removed from favorites
+[2025-05-21 22:52:01] Request received. Method: POST
+[2025-05-21 22:52:01] POST data: Array
+(
+    [car_id] => 7
+)
+
+[2025-05-21 22:52:01] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682d8636314dd.jpg
+)
+
+[2025-05-21 22:52:01] Processing request for car_id: 7 and user_id: 4
+[2025-05-21 22:52:01] Check favorite result: 1 rows found
+[2025-05-21 22:52:01] Success: Car removed from favorites
+[2025-05-22 12:35:32] Request received. Method: POST
+[2025-05-22 12:35:32] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-22 12:35:32] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-22 12:35:32] Processing request for car_id: 2 and user_id: 4
+[2025-05-22 12:35:32] Check favorite result: 0 rows found
+[2025-05-22 12:35:32] Success: Car added to favorites
+[2025-05-22 12:50:44] Request received. Method: POST
+[2025-05-22 12:50:44] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-22 12:50:44] Session data: Array
+(
+    [id] => 6
+    [email] => jagmeet@gmail.com
+)
+
+[2025-05-22 12:50:44] Processing request for car_id: 2 and user_id: 6
+[2025-05-22 12:50:44] Check favorite result: 0 rows found
+[2025-05-22 12:50:44] Success: Car added to favorites
+[2025-05-22 13:29:45] Request received. Method: POST
+[2025-05-22 13:29:45] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-22 13:29:45] Session data: Array
+(
+    [id] => 6
+    [email] => jagmeet@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/6_682f090602336.png
+)
+
+[2025-05-22 13:29:45] Processing request for car_id: 2 and user_id: 6
+[2025-05-22 13:29:45] Check favorite result: 1 rows found
+[2025-05-22 13:29:45] Success: Car removed from favorites
+[2025-05-22 13:55:19] Request received. Method: POST
+[2025-05-22 13:55:19] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-22 13:55:19] Session data: Array
+(
+    [id] => 6
+    [email] => jagmeet@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/6_682f090602336.png
+    [error] => 1
+    [message] => Er is een fout opgetreden bij het verwerken van uw reservering. Probeer het later opnieuw.
+)
+
+[2025-05-22 13:55:19] Processing request for car_id: 2 and user_id: 6
+[2025-05-22 13:55:19] Check favorite result: 0 rows found
+[2025-05-22 13:55:19] Success: Car added to favorites
+[2025-05-22 13:55:19] Request received. Method: POST
+[2025-05-22 13:55:19] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-22 13:55:19] Session data: Array
+(
+    [id] => 6
+    [email] => jagmeet@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/6_682f090602336.png
+    [error] => 1
+    [message] => Er is een fout opgetreden bij het verwerken van uw reservering. Probeer het later opnieuw.
+)
+
+[2025-05-22 13:55:19] Processing request for car_id: 2 and user_id: 6
+[2025-05-22 13:55:19] Check favorite result: 1 rows found
+[2025-05-22 13:55:19] Success: Car removed from favorites
+[2025-05-23 11:50:39] Request received. Method: POST
+[2025-05-23 11:50:39] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-23 11:50:39] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 11:50:39] Processing request for car_id: 2 and user_id: 4
+[2025-05-23 11:50:39] Check favorite result: 1 rows found
+[2025-05-23 11:50:39] Success: Car removed from favorites
+[2025-05-23 12:00:07] Request received. Method: POST
+[2025-05-23 12:00:07] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-23 12:00:07] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 12:00:07] Processing request for car_id: 1 and user_id: 4
+[2025-05-23 12:00:07] Check favorite result: 0 rows found
+[2025-05-23 12:00:07] Success: Car added to favorites
+[2025-05-23 12:00:12] Request received. Method: POST
+[2025-05-23 12:00:12] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-23 12:00:12] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 12:00:12] Processing request for car_id: 1 and user_id: 4
+[2025-05-23 12:00:12] Check favorite result: 1 rows found
+[2025-05-23 12:00:12] Success: Car removed from favorites
+[2025-05-23 12:04:52] Request received. Method: POST
+[2025-05-23 12:04:52] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-23 12:04:52] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 12:04:52] Processing request for car_id: 1 and user_id: 4
+[2025-05-23 12:04:52] Check favorite result: 0 rows found
+[2025-05-23 12:04:52] Success: Car added to favorites
+[2025-05-23 12:04:53] Request received. Method: POST
+[2025-05-23 12:04:53] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-23 12:04:53] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 12:04:53] Processing request for car_id: 1 and user_id: 4
+[2025-05-23 12:04:53] Check favorite result: 1 rows found
+[2025-05-23 12:04:53] Success: Car removed from favorites
+[2025-05-23 12:06:11] Request received. Method: POST
+[2025-05-23 12:06:11] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-23 12:06:11] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 12:06:11] Processing request for car_id: 2 and user_id: 4
+[2025-05-23 12:06:11] Check favorite result: 0 rows found
+[2025-05-23 12:06:11] Success: Car added to favorites
+[2025-05-23 12:06:12] Request received. Method: POST
+[2025-05-23 12:06:12] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-23 12:06:12] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_682ebcbf9d01f.png
+)
+
+[2025-05-23 12:06:12] Processing request for car_id: 2 and user_id: 4
+[2025-05-23 12:06:12] Check favorite result: 1 rows found
+[2025-05-23 12:06:12] Success: Car removed from favorites
+[2025-05-23 12:09:50] Request received. Method: POST
+[2025-05-23 12:09:50] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-23 12:09:50] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_68304949c98ea.png
+)
+
+[2025-05-23 12:09:50] Processing request for car_id: 2 and user_id: 4
+[2025-05-23 12:09:50] Check favorite result: 0 rows found
+[2025-05-23 12:09:50] Success: Car added to favorites
+[2025-05-23 12:09:51] Request received. Method: POST
+[2025-05-23 12:09:51] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-05-23 12:09:51] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_68304949c98ea.png
+)
+
+[2025-05-23 12:09:51] Processing request for car_id: 2 and user_id: 4
+[2025-05-23 12:09:51] Check favorite result: 1 rows found
+[2025-05-23 12:09:51] Success: Car removed from favorites
+[2025-05-23 12:27:03] Request received. Method: POST
+[2025-05-23 12:27:03] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-23 12:27:03] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_68304949c98ea.png
+)
+
+[2025-05-23 12:27:04] Processing request for car_id: 1 and user_id: 4
+[2025-05-23 12:27:04] Check favorite result: 0 rows found
+[2025-05-23 12:27:04] Success: Car added to favorites
+[2025-05-23 12:27:04] Request received. Method: POST
+[2025-05-23 12:27:04] POST data: Array
+(
+    [car_id] => 1
+)
+
+[2025-05-23 12:27:04] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_68304949c98ea.png
+)
+
+[2025-05-23 12:27:04] Processing request for car_id: 1 and user_id: 4
+[2025-05-23 12:27:04] Check favorite result: 1 rows found
+[2025-05-23 12:27:04] Success: Car removed from favorites
+[2025-05-27 09:11:51] Request received. Method: POST
+[2025-05-27 09:11:51] POST data: Array
+(
+    [car_id] => 5
+)
+
+[2025-05-27 09:11:51] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_68304949c98ea.png
+)
+
+[2025-05-27 09:11:51] Processing request for car_id: 5 and user_id: 4
+[2025-05-27 09:11:51] Check favorite result: 0 rows found
+[2025-05-27 09:11:51] Success: Car added to favorites
+[2025-05-27 09:11:52] Request received. Method: POST
+[2025-05-27 09:11:52] POST data: Array
+(
+    [car_id] => 5
+)
+
+[2025-05-27 09:11:52] Session data: Array
+(
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_68304949c98ea.png
+)
+
+[2025-05-27 09:11:52] Processing request for car_id: 5 and user_id: 4
+[2025-05-27 09:11:52] Check favorite result: 1 rows found
+[2025-05-27 09:11:52] Success: Car removed from favorites
