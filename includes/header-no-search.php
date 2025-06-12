@@ -26,12 +26,7 @@ if (session_status() === PHP_SESSION_NONE) {
             Rydr.
         </a>
     </div>
-    <form action="search" method="GET">
-        <input type="search" name="query" id="search-input" placeholder="Welke auto wilt u huren?">
-        <button type="submit" class="search-button">
-            <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
-        </button>
-    </form>
+    <!-- Search bar removed -->
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -51,7 +46,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 <ul>
                     <li><img src="assets/images/icons/setting.svg" alt=""><a href="/profile">Mijn Profiel</a></li>
                     <li><img src="assets/images/icons/heart.svg" alt=""><a href="/mijn-favorieten">Mijn Favorieten</a></li>
-                    <li><img src="assets/images/icons/calendar.svg" alt=""><a href="/my-bookings">Mijn Reserveringen</a></li>
                     <li><img src="assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
                 </ul>
             </div>
@@ -65,4 +59,4 @@ if (session_status() === PHP_SESSION_NONE) {
 
     </div>
 </div>
-<div class="content">
+<div class="content"> 

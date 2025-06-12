@@ -1,4 +1,4 @@
-<?php require "includes/header.php" ?>
+<?php require "includes/header-no-search.php" ?>
 
 <main>
     <div class="container terms-page">

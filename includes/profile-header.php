@@ -11,27 +11,22 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rydr</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/dark-mode.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon.ico" sizes="32x32">
+    <title>Rydr - <?= isset($pageTitle) ? $pageTitle : 'Mijn Account' ?></title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dark-mode.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" sizes="32x32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="topbar">
+<div class="topbar profile-topbar">
     <div class="logo">
         <a href="/">
             Rydr.
         </a>
     </div>
-    <form action="search" method="GET">
-        <input type="search" name="query" id="search-input" placeholder="Welke auto wilt u huren?">
-        <button type="submit" class="search-button">
-            <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
-        </button>
-    </form>
+    <!-- No search form in profile pages -->
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -41,18 +36,17 @@ if (session_status() === PHP_SESSION_NONE) {
     </nav>
     <div class="menu">
         <div class="dark-mode-toggle">
-            <img src="assets/images/icons/moon.svg" alt="Dark Mode" class="toggle-icon moon-icon">
-            <img src="assets/images/icons/sun.svg" alt="Light Mode" class="toggle-icon sun-icon">
+            <img src="/assets/images/icons/moon.svg" alt="Dark Mode" class="toggle-icon moon-icon">
+            <img src="/assets/images/icons/sun.svg" alt="Light Mode" class="toggle-icon sun-icon">
         </div>
         <?php if(isset($_SESSION['id'])){ ?>
         <div class="account">
-            <img src="<?= isset($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : 'assets/images/profil.png' ?>" alt="Profielfoto" class="profile-img">
+            <img src="<?= isset($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '/assets/images/profil.png' ?>" alt="Profielfoto" class="profile-img">
             <div class="account-dropdown">
                 <ul>
-                    <li><img src="assets/images/icons/setting.svg" alt=""><a href="/profile">Mijn Profiel</a></li>
-                    <li><img src="assets/images/icons/heart.svg" alt=""><a href="/mijn-favorieten">Mijn Favorieten</a></li>
-                    <li><img src="assets/images/icons/calendar.svg" alt=""><a href="/my-bookings">Mijn Reserveringen</a></li>
-                    <li><img src="assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
+                    <li><img src="/assets/images/icons/setting.svg" alt=""><a href="/profile">Mijn Profiel</a></li>
+                    <li><img src="/assets/images/icons/heart.svg" alt=""><a href="/mijn-favorieten">Mijn Favorieten</a></li>
+                    <li><img src="/assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
                 </ul>
             </div>
         </div>
@@ -62,7 +56,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="/register-form" class="button-primary">Registreren</a>
             </div>
         <?php } ?>
-
     </div>
 </div>
-<div class="content">
+<div class="content"> 

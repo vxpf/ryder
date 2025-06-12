@@ -1,7 +1,7 @@
 <footer>
     <div class="brand">
         <h2>Rydr.</h2>
-        <p>Stap in. Rij weg. Simpel.</p>
+        <p>Get in the car. Drive away. Simple as that.</p>
     </div>
     <div class="footer-links">
         <div class="links">
@@ -16,7 +16,7 @@
             <h3>Community</h3>
             <ul>
                 <li><a href="#">Events</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="/blog">Blog</a></li>
                 <li><a href="#">Podcast</a></li>
                 <li><a href="#">Invite a friend</a></li>
             </ul>
@@ -40,7 +40,7 @@
     </div>
     <div class="legal-links">
         <ul>
-            <li><a href="#">Privacy & Policy</a></li>
+            <li><a href="/privacy-policy">Privacy & Policy</a></li>
             <li><a href="/terms-and-conditions">Terms & Condition</a></li>
         </ul>
     </div>
@@ -57,6 +57,7 @@
     </div>
 </div>
 <script src="assets/javascript/main.js"></script>
+<script src="assets/js/dark-mode.js"></script>
 
 </body>
 </html>
