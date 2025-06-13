@@ -2,6 +2,22 @@
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+    
+    // Check if there's a "remember me" cookie but no active session
+    // This would be where you'd check a remember_me cookie if that feature exists
+    
+    // If no explicit login action was performed, clear the session variables
+    // This prevents automatic login when just opening the webpage
+    if (!isset($_SESSION['login_verified'])) {
+        // Unset all session variables related to user authentication
+        unset($_SESSION['id']);
+        unset($_SESSION['email']);
+        unset($_SESSION['profile_photo']);
+        unset($_SESSION['admin_id']);
+        unset($_SESSION['admin_email']);
+        unset($_SESSION['admin_name']);
+        unset($_SESSION['admin_table']);
+    }
 } 
 ?>
 <!doctype html>

@@ -6,13 +6,90 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Check if admin is logged in
 if (!isset($_SESSION['admin_id'])) {
-    header('Location: /admin/login');
+    header('Location: /pages/admin/login.php');
     exit;
 }
+
+// Connect to the database
+require_once "../../includes/db_connect.php";
 
 // Get admin info
 $admin_name = $_SESSION['admin_name'] ?? 'Administrator';
 $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
+
+// Get database statistics
+$stats = [
+    'users' => 0,
+    'cars' => 0,
+    'bookings' => 0,
+    'pending_bookings' => 0
+];
+
+try {
+    // Count users - check which table to use
+    if (isset($_SESSION['admin_table']) && $_SESSION['admin_table'] == 'users') {
+        $stmt = $conn->query("SELECT COUNT(*) as count FROM users WHERE is_admin = FALSE");
+        $stats['users'] = $stmt->fetch()['count'];
+    } else {
+        $stmt = $conn->query("SELECT COUNT(*) as count FROM account WHERE role IS NULL OR role = 0");
+        $stats['users'] = $stmt->fetch()['count'];
+    }
+    
+    // Count cars
+    try {
+        $stmt = $conn->query("SELECT COUNT(*) as count FROM cars");
+        $stats['cars'] = $stmt->fetch()['count'];
+    } catch(PDOException $e) {
+        // Table might not exist
+    }
+    
+    // Count bookings
+    try {
+        $stmt = $conn->query("SELECT COUNT(*) as count FROM bookings");
+        $stats['bookings'] = $stmt->fetch()['count'];
+        
+        $stmt = $conn->query("SELECT COUNT(*) as count FROM bookings WHERE status = 'pending'");
+        $stats['pending_bookings'] = $stmt->fetch()['count'];
+    } catch(PDOException $e) {
+        // Table might not exist
+    }
+} catch(PDOException $e) {
+    // Ignore errors
+}
+
+// Get recent users
+$recentUsers = [];
+try {
+    if (isset($_SESSION['admin_table']) && $_SESSION['admin_table'] == 'users') {
+        $stmt = $conn->query("SELECT id, first_name, last_name, email, created_at FROM users WHERE is_admin = FALSE ORDER BY created_at DESC LIMIT 5");
+        $recentUsers = $stmt->fetchAll();
+    } else {
+        $stmt = $conn->query("SELECT id, first_name, last_name, email, created_at FROM account WHERE role IS NULL OR role = 0 ORDER BY created_at DESC LIMIT 5");
+        $recentUsers = $stmt->fetchAll();
+    }
+} catch(PDOException $e) {
+    // Ignore errors
+}
+
+// Get recent bookings
+$recentBookings = [];
+try {
+    $stmt = $conn->query("SELECT b.id, b.start_date, b.end_date, b.total_price, b.status, 
+                          CASE 
+                            WHEN u.id IS NOT NULL THEN CONCAT(u.first_name, ' ', u.last_name)
+                            WHEN a.id IS NOT NULL THEN CONCAT(a.first_name, ' ', a.last_name)
+                            ELSE 'Onbekend'
+                          END as customer_name,
+                          c.brand, c.model
+                          FROM bookings b
+                          LEFT JOIN users u ON b.user_id = u.id
+                          LEFT JOIN account a ON b.user_id = a.id
+                          LEFT JOIN cars c ON b.car_id = c.id
+                          ORDER BY b.created_at DESC LIMIT 5");
+    $recentBookings = $stmt->fetchAll();
+} catch(PDOException $e) {
+    // Ignore errors
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -45,6 +122,11 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
             color: white;
             padding: 20px 0;
             flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
         }
         
         .sidebar-header {
@@ -104,6 +186,7 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
             flex-grow: 1;
             padding: 20px;
             overflow-y: auto;
+            margin-left: 250px;
         }
         
         .topbar {
@@ -155,7 +238,7 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
         
         .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
             margin-bottom: 20px;
         }
@@ -188,284 +271,150 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
             background-color: #3563e9;
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
+            border-radius: 8px;
+            padding: 10px 16px;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(53, 99, 233, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .card-btn:hover {
             background-color: #2954d4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(53, 99, 233, 0.3);
         }
         
         .card-btn.secondary {
             background-color: #f8f9fa;
             color: #333;
             border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
         .card-btn.secondary:hover {
             background-color: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .chat-area {
-            grid-column: 1 / -1;
+        .action-card {
+            height: 70px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            background-image: linear-gradient(135deg, #3563e9, #4e7df7);
+            box-shadow: 0 4px 10px rgba(53, 99, 233, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(53, 99, 233, 0.35);
+            background-image: linear-gradient(135deg, #2954d4, #3563e9);
+        }
+        
+        .action-card i {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        
+        .stats-grid {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
-            height: 600px;
-        }
-        
-        .chat-list {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-list-header {
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-            font-weight: 600;
-        }
-        
-        .chat-list-content {
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-        
-        .chat-item {
-            padding: 15px;
-            border-bottom: 1px solid #e9ecef;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .chat-item:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .chat-item.active {
-            background-color: #ebf5ff;
-            border-left: 3px solid #3563e9;
-        }
-        
-        .chat-item-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-        
-        .chat-item-name {
-            font-weight: 600;
-        }
-        
-        .chat-item-time {
-            font-size: 12px;
-            color: #666;
-        }
-        
-        .chat-item-preview {
-            font-size: 14px;
-            color: #666;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .chat-window {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .chat-window-header {
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chat-user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .chat-user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #3563e9;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-        
-        .chat-user-name {
-            font-weight: 600;
-        }
-        
-        .chat-user-status {
-            font-size: 12px;
-            color: #28a745;
-        }
-        
-        .chat-window-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .chat-window-content {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: #f5f7fb;
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
         
-        .message {
-            max-width: 80%;
-        }
-        
-        .system-message {
-            align-self: center;
-            background-color: #f0f0f0;
-            padding: 8px 12px;
-            border-radius: 15px;
-            font-size: 13px;
-            color: #666;
-            text-align: center;
-            width: auto;
-            max-width: 90%;
-        }
-        
-        .user-message {
-            align-self: flex-end;
-            background-color: #3563e9;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 18px 18px 0 18px;
-        }
-        
-        .agent-message {
-            align-self: flex-start;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .message-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .message-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .message-content {
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 18px 18px 18px 0;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .message-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 12px;
-        }
-        
-        .message-name {
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .message-time {
-            color: #999;
-        }
-        
-        .message p {
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        
-        .chat-window-input {
+        .stat-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
             padding: 15px;
-            display: flex;
-            gap: 10px;
-            border-top: 1px solid #e9ecef;
+            text-align: center;
         }
         
-        .chat-window-input input {
-            flex-grow: 1;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            font-family: inherit;
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3563e9;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
             font-size: 14px;
-        }
-        
-        .chat-window-input input:focus {
-            outline: none;
-            border-color: #3563e9;
-            box-shadow: 0 0 0 2px rgba(53, 99, 233, 0.2);
-        }
-        
-        .chat-window-input button {
-            background-color: #3563e9;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .chat-window-input button:hover {
-            background-color: #2954d4;
-        }
-        
-        .no-chat-selected {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
             color: #666;
         }
         
-        .no-chat-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: #a0aec0;
+        .table-container {
+            overflow-x: auto;
         }
         
-        @media (max-width: 992px) {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background-color: #fff8e1;
+            color: #f57c00;
+        }
+        
+        .status-confirmed {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-cancelled {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .status-completed {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: #3563e9;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 14px;
+        }
+        
+        .action-btn:hover {
+            color: #2954d4;
+        }
+        
+        @media (max-width: 768px) {
             .admin-container {
                 flex-direction: column;
             }
@@ -473,23 +422,16 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
             .sidebar {
                 width: 100%;
                 padding: 10px 0;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
             }
             
             .dashboard-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .chat-area {
-                grid-template-columns: 1fr;
-                height: auto;
-            }
-            
-            .chat-list {
-                height: 300px;
-            }
-            
-            .chat-window {
-                height: 500px;
             }
         }
     </style>
@@ -503,12 +445,11 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
             </div>
             
             <ul class="sidebar-menu">
-                <li><a href="/admin/dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-comments"></i> Live Chats</a></li>
-                <li><a href="#"><i class="fas fa-car"></i> Auto's</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Gebruikers</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i> Reserveringen</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Instellingen</a></li>
+                <li><a href="/pages/admin/dashboard.php" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/pages/admin/users.php"><i class="fas fa-users"></i> Gebruikers</a></li>
+                <li><a href="/pages/admin/cars.php"><i class="fas fa-car"></i> Auto's</a></li>
+                <li><a href="/pages/admin/reservations.php"><i class="fas fa-calendar-alt"></i> Reserveringen</a></li>
+                <li><a href="/pages/admin/settings.php"><i class="fas fa-cog"></i> Instellingen</a></li>
             </ul>
         </div>
         
@@ -521,242 +462,135 @@ $admin_email = $_SESSION['admin_email'] ?? 'admin@rydr.nl';
                         <div class="user-name"><?= htmlspecialchars($admin_name) ?></div>
                         <div class="user-role">Administrator</div>
                     </div>
-                    <a href="/admin/logout" class="logout-btn">Uitloggen</a>
+                    <a href="/pages/admin/logout.php" class="logout-btn">Uitloggen</a>
                 </div>
             </div>
             
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-header">
-                        <div class="card-title">Actieve Chats</div>
+                        <div class="card-title">Statistieken</div>
                         <div class="card-actions">
-                            <button class="card-btn">Alle chats bekijken</button>
+                            <a href="/pages/admin/dashboard.php" class="card-btn secondary"><i class="fas fa-sync-alt"></i> Vernieuwen</a>
                         </div>
                     </div>
-                    <div>
-                        <p>Er zijn momenteel <strong>2</strong> actieve chats.</p>
-                        <p>Gemiddelde wachttijd: <strong>1 minuut</strong></p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number"><?= $stats['users'] ?></div>
+                            <div class="stat-label">Gebruikers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number"><?= $stats['cars'] ?></div>
+                            <div class="stat-label">Auto's</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number"><?= $stats['bookings'] ?></div>
+                            <div class="stat-label">Reserveringen</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number"><?= $stats['pending_bookings'] ?></div>
+                            <div class="stat-label">Wachtend</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="dashboard-card">
                     <div class="card-header">
-                        <div class="card-title">Statistieken</div>
+                        <div class="card-title">Recente Gebruikers</div>
                         <div class="card-actions">
-                            <button class="card-btn secondary">Vernieuwen</button>
+                            <a href="/pages/admin/users.php" class="card-btn"><i class="fas fa-users"></i> Alle gebruikers</a>
                         </div>
                     </div>
-                    <div>
-                        <p>Chats vandaag: <strong>12</strong></p>
-                        <p>Gemiddelde chat duur: <strong>8 minuten</strong></p>
-                        <p>Klanttevredenheid: <strong>4.8/5</strong></p>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Naam</th>
+                                    <th>Email</th>
+                                    <th>Datum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (empty($recentUsers)): ?>
+                                <tr>
+                                    <td colspan="3" style="text-align: center;">Geen gebruikers gevonden</td>
+                                </tr>
+                                <?php else: ?>
+                                    <?php foreach ($recentUsers as $user): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
+                                        <td><?= htmlspecialchars($user['email']) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($user['created_at'])) ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 
-                <div class="chat-area">
-                    <div class="chat-list">
-                        <div class="chat-list-header">
-                            Actieve Chats (2)
-                        </div>
-                        <div class="chat-list-content">
-                            <div class="chat-item active" onclick="selectChat(1)">
-                                <div class="chat-item-header">
-                                    <div class="chat-item-name">Bezoeker #1</div>
-                                    <div class="chat-item-time">Nu</div>
-                                </div>
-                                <div class="chat-item-preview">Ik heb een vraag over het huren van een auto...</div>
-                            </div>
-                            <div class="chat-item" onclick="selectChat(2)">
-                                <div class="chat-item-header">
-                                    <div class="chat-item-name">Bezoeker #2</div>
-                                    <div class="chat-item-time">3 min</div>
-                                </div>
-                                <div class="chat-item-preview">Wat zijn de kosten voor een weekendhuur?</div>
-                            </div>
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">Recente Reserveringen</div>
+                        <div class="card-actions">
+                            <a href="/pages/admin/reservations.php" class="card-btn"><i class="fas fa-calendar-alt"></i> Alle reserveringen</a>
                         </div>
                     </div>
-                    
-                    <div class="chat-window">
-                        <div class="chat-window-header">
-                            <div class="chat-user-info">
-                                <div class="chat-user-avatar">B1</div>
-                                <div>
-                                    <div class="chat-user-name">Bezoeker #1</div>
-                                    <div class="chat-user-status">Online</div>
-                                </div>
-                            </div>
-                            <div class="chat-window-actions">
-                                <button class="card-btn secondary" onclick="endChat()">Chat beëindigen</button>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-window-content" id="chat-messages">
-                            <div class="message system-message">
-                                <p>Chat gestart om <?= date('H:i') ?></p>
-                            </div>
-                            <div class="message user-message">
-                                <p>Hallo! Ik heb een vraag over het huren van een auto voor het weekend.</p>
-                            </div>
-                            <div class="message agent-message">
-                                <div class="message-avatar">
-                                    <img src="/assets/images/team/brian-mensah.png" alt="Agent">
-                                </div>
-                                <div class="message-content">
-                                    <div class="message-header">
-                                        <span class="message-name"><?= htmlspecialchars($admin_name) ?></span>
-                                        <span class="message-time">Nu</span>
-                                    </div>
-                                    <p>Hallo! Natuurlijk, ik help u graag. Welk type auto zoekt u voor het weekend?</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-window-input">
-                            <input type="text" id="admin-message-input" placeholder="Typ een bericht...">
-                            <button id="admin-send-message"><i class="fas fa-paper-plane"></i></button>
-                        </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Klant</th>
+                                    <th>Auto</th>
+                                    <th>Datum</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (empty($recentBookings)): ?>
+                                <tr>
+                                    <td colspan="4" style="text-align: center;">Geen reserveringen gevonden</td>
+                                </tr>
+                                <?php else: ?>
+                                    <?php foreach ($recentBookings as $booking): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($booking['customer_name']) ?></td>
+                                        <td><?= htmlspecialchars($booking['brand'] . ' ' . $booking['model']) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($booking['start_date'])) ?></td>
+                                        <td>
+                                            <span class="status-badge status-<?= strtolower($booking['status']) ?>">
+                                                <?= htmlspecialchars(ucfirst($booking['status'])) ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">Snelle Acties</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <a href="/pages/admin/users.php?action=add" class="card-btn action-card" style="text-decoration: none;">
+                            <i class="fas fa-user-plus"></i> Nieuwe Gebruiker
+                        </a>
+                        <a href="/pages/admin/cars.php?action=add" class="card-btn action-card" style="text-decoration: none;">
+                            <i class="fas fa-car-side"></i> Nieuwe Auto
+                        </a>
+                        <a href="/pages/admin/reservations.php?action=edit" class="card-btn action-card" style="text-decoration: none;">
+                            <i class="fas fa-calendar-plus"></i> Beheer Reserveringen
+                        </a>
+                        <a href="/pages/admin/settings.php" class="card-btn action-card" style="text-decoration: none;">
+                            <i class="fas fa-cog"></i> Instellingen
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const messageInput = document.getElementById('admin-message-input');
-            const sendButton = document.getElementById('admin-send-message');
-            const chatMessages = document.getElementById('chat-messages');
-            
-            if (sendButton && messageInput) {
-                sendButton.addEventListener('click', sendMessage);
-                messageInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        sendMessage();
-                    }
-                });
-            }
-            
-            function sendMessage() {
-                const message = messageInput.value.trim();
-                if (message) {
-                    // Add agent message
-                    const agentMessage = document.createElement('div');
-                    agentMessage.className = 'message agent-message';
-                    
-                    agentMessage.innerHTML = `
-                        <div class="message-avatar">
-                            <img src="/assets/images/team/brian-mensah.png" alt="Agent">
-                        </div>
-                        <div class="message-content">
-                            <div class="message-header">
-                                <span class="message-name"><?= htmlspecialchars($admin_name) ?></span>
-                                <span class="message-time">Nu</span>
-                            </div>
-                            <p>${escapeHtml(message)}</p>
-                        </div>
-                    `;
-                    chatMessages.appendChild(agentMessage);
-                    
-                    // Clear input
-                    messageInput.value = '';
-                    
-                    // Scroll to bottom
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                    
-                    // Simulate user response after delay
-                    setTimeout(() => {
-                        // Add user response
-                        const userMessage = document.createElement('div');
-                        userMessage.className = 'message user-message';
-                        
-                        // Generate a response based on the agent's message
-                        let response = getSimulatedResponse(message);
-                        
-                        userMessage.innerHTML = `<p>${response}</p>`;
-                        chatMessages.appendChild(userMessage);
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }, 2000);
-                }
-            }
-            
-            function getSimulatedResponse(message) {
-                message = message.toLowerCase();
-                
-                if (message.includes('weekend') || message.includes('type auto')) {
-                    return 'Ik zoek een middenklasse auto, liefst een SUV. Is dat mogelijk voor komend weekend?';
-                } else if (message.includes('suv') || message.includes('middenklasse')) {
-                    return 'Dat klinkt goed! Wat zijn de kosten voor een SUV voor het hele weekend?';
-                } else if (message.includes('prijs') || message.includes('kosten') || message.includes('tarief')) {
-                    return 'Bedankt voor de informatie. Is het mogelijk om de auto vrijdagmiddag op te halen en maandagochtend terug te brengen?';
-                } else if (message.includes('ophalen') || message.includes('terugbrengen') || message.includes('vrijdag')) {
-                    return 'Perfect! Hoe kan ik de reservering maken? Moet ik naar jullie kantoor komen of kan het online?';
-                } else if (message.includes('reservering') || message.includes('boeken') || message.includes('online')) {
-                    return 'Geweldig, bedankt voor je hulp! Ik ga nu direct de reservering maken via de website.';
-                } else if (message.includes('bedankt') || message.includes('dank')) {
-                    return 'Nog een laatste vraag: is er een borg die ik moet betalen?';
-                } else {
-                    return 'Bedankt voor de informatie. Kunt u mij meer vertellen over de beschikbaarheid voor komend weekend?';
-                }
-            }
-            
-            function escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-        });
-        
-        function selectChat(chatId) {
-            // In a real app, this would load the chat history for the selected chat
-            const chatItems = document.querySelectorAll('.chat-item');
-            chatItems.forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            event.currentTarget.classList.add('active');
-            
-            // Update chat window header
-            document.querySelector('.chat-user-name').textContent = `Bezoeker #${chatId}`;
-            document.querySelector('.chat-user-avatar').textContent = `B${chatId}`;
-            
-            // Clear chat messages and add initial messages
-            const chatMessages = document.getElementById('chat-messages');
-            chatMessages.innerHTML = '';
-            
-            const systemMessage = document.createElement('div');
-            systemMessage.className = 'message system-message';
-            systemMessage.innerHTML = `<p>Chat gestart om ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2, '0')}</p>`;
-            chatMessages.appendChild(systemMessage);
-            
-            if (chatId === 1) {
-                const userMessage = document.createElement('div');
-                userMessage.className = 'message user-message';
-                userMessage.innerHTML = '<p>Hallo! Ik heb een vraag over het huren van een auto voor het weekend.</p>';
-                chatMessages.appendChild(userMessage);
-            } else {
-                const userMessage = document.createElement('div');
-                userMessage.className = 'message user-message';
-                userMessage.innerHTML = '<p>Wat zijn de kosten voor een weekendhuur?</p>';
-                chatMessages.appendChild(userMessage);
-            }
-        }
-        
-        function endChat() {
-            if (confirm('Weet u zeker dat u deze chat wilt beëindigen?')) {
-                const chatMessages = document.getElementById('chat-messages');
-                
-                const systemMessage = document.createElement('div');
-                systemMessage.className = 'message system-message';
-                systemMessage.innerHTML = '<p>Chat beëindigd</p>';
-                chatMessages.appendChild(systemMessage);
-                
-                // In a real app, you would mark the chat as ended in the database
-                // and remove it from the active chats list
-                setTimeout(() => {
-                    alert('Chat is beëindigd. In een echte applicatie zou deze chat nu worden gearchiveerd.');
-                }, 500);
-            }
-        }
-    </script>
 </body>
 </html> 

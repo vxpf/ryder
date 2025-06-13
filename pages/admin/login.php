@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Check if already logged in
 if (isset($_SESSION['admin_id'])) {
-    header('Location: /admin/dashboard');
+    header('Location: /pages/admin/dashboard.php');
     exit;
 }
 
@@ -19,22 +19,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     
     try {
-        // Check if user exists and is an admin
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND is_admin = TRUE");
-        $stmt->execute([$email]);
-        $admin = $stmt->fetch();
+        $admin = null;
+        $adminFound = false;
         
-        if ($admin && password_verify($password, $admin['password'])) {
-            // Set admin session
-            $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_email'] = $admin['email'];
-            $_SESSION['admin_name'] = $admin['first_name'] . ' ' . $admin['last_name'];
+        // First check users table
+        try {
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND is_admin = TRUE");
+            $stmt->execute([$email]);
+            $admin = $stmt->fetch();
             
-            // Redirect to dashboard
-            header('Location: /admin/dashboard');
-            exit;
+            if ($admin && password_verify($password, $admin['password'])) {
+                // Set admin session
+                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['admin_email'] = $admin['email'];
+                $_SESSION['admin_name'] = $admin['first_name'] . ' ' . $admin['last_name'];
+                $_SESSION['admin_table'] = 'users';
+                
+                // Redirect to dashboard
+                header('Location: /pages/admin/dashboard.php');
+                exit;
+            } elseif ($admin) {
+                $adminFound = true; // Admin exists but password is wrong
+            }
+        } catch(PDOException $e) {
+            // Table might not exist, continue to check account table
+        }
+        
+        // If not found in users table, check account table
+        if (!$adminFound) {
+            try {
+                $stmt = $conn->prepare("SELECT * FROM account WHERE email = ? AND role = 1");
+                $stmt->execute([$email]);
+                $admin = $stmt->fetch();
+                
+                if ($admin && password_verify($password, $admin['password'])) {
+                    // Set admin session
+                    $_SESSION['admin_id'] = $admin['id'];
+                    $_SESSION['admin_email'] = $admin['email'];
+                    
+                    // Check if first_name and last_name exist in the account table
+                    if (isset($admin['first_name']) && isset($admin['last_name'])) {
+                        $_SESSION['admin_name'] = $admin['first_name'] . ' ' . $admin['last_name'];
+                    } else {
+                        $_SESSION['admin_name'] = 'Administrator';
+                    }
+                    
+                    $_SESSION['admin_table'] = 'account';
+                    
+                    // Redirect to dashboard
+                    header('Location: /pages/admin/dashboard.php');
+                    exit;
+                } elseif ($admin) {
+                    $adminFound = true; // Admin exists but password is wrong
+                }
+            } catch(PDOException $e) {
+                // Table might not exist
+            }
+        }
+        
+        if ($adminFound) {
+            $error = 'Ongeldig wachtwoord';
         } else {
-            $error = 'Ongeldig e-mailadres of wachtwoord';
+            $error = 'Geen admin account gevonden met dit e-mailadres';
         }
     } catch(PDOException $e) {
         $error = 'Er is een fout opgetreden. Probeer het later opnieuw.';
@@ -54,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f6f7f9;
@@ -249,7 +296,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="/" class="back-link">Terug naar website</a>
         
         <div class="admin-setup-link">
-            Nog geen admin account? <a href="/admin/create_admin.php">Maak er een aan</a>
+            Nog geen admin account? <a href="/pages/admin/setup.php">Maak er een aan</a>
         </div>
     </div>
 </body>
