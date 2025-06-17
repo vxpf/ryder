@@ -1533,3 +1533,18 @@
 [2025-05-27 09:11:52] Processing request for car_id: 5 and user_id: 4
 [2025-05-27 09:11:52] Check favorite result: 1 rows found
 [2025-05-27 09:11:52] Success: Car removed from favorites
+[2025-06-17 11:37:18] Request received. Method: POST
+[2025-06-17 11:37:18] POST data: Array
+(
+    [car_id] => 10
+)
+
+[2025-06-17 11:37:18] Session data: Array
+(
+    [id] => 5
+    [email] => boudewijnvantveer@gmail.com
+)
+
+[2025-06-17 11:37:18] Processing request for car_id: 10 and user_id: 5
+[2025-06-17 11:37:18] Check favorite result: 0 rows found
+[2025-06-17 11:37:19] Success: Car added to favorites

@@ -56,23 +56,26 @@ $has_business_data = !empty($business_vehicles);
                 // Display first 4 cars from database
                 for ($i = 0; $i < 4 && $i < count($cars); $i++) {
                     $car = $cars[$i];
+                    $car_brand = htmlspecialchars($car['brand'] ?? 'Onbekende merk');
+                    $car_model = htmlspecialchars($car['model'] ?? '');
+                    $car_full_name = $car_brand . ($car_model ? ' ' . $car_model : '');
             ?>
                 <div class="car-details">
                     <div class="car-brand">
-                        <h3><?= htmlspecialchars($car['brand']) ?></h3>
+                        <h3><?= $car_full_name ?></h3>
                         <div class="car-type">
-                            <?= htmlspecialchars($car['category']) ?>
+                            <?= htmlspecialchars($car['category'] ?? 'Onbekende categorie') ?>
                         </div>
                     </div>
-                    <img src="<?= htmlspecialchars($car['image_url']) ?>" alt="<?= htmlspecialchars($car['brand']) ?>">
+                    <img src="<?= htmlspecialchars($car['image_url'] ?? 'assets/images/products/car (0).svg') ?>" alt="<?= $car_full_name ?>">
                     <div class="car-specification">
-                        <span><img src="assets/images/icons/gas-station.svg" alt=""><?= htmlspecialchars($car['fuel_capacity']) ?></span>
-                        <span><img src="assets/images/icons/car.svg" alt=""><?= htmlspecialchars($car['transmission']) ?></span>
-                        <span><img src="assets/images/icons/profile-2user.svg" alt=""><?= htmlspecialchars($car['capacity']) ?> Personen</span>
+                        <span><img src="assets/images/icons/gas-station.svg" alt=""><?= htmlspecialchars($car['fuel_capacity'] ?? 'Onbekend') ?></span>
+                        <span><img src="assets/images/icons/car.svg" alt=""><?= htmlspecialchars($car['transmission'] ?? 'Onbekend') ?></span>
+                        <span><img src="assets/images/icons/profile-2user.svg" alt=""><?= htmlspecialchars($car['capacity'] ?? 'Onbekend') ?> Personen</span>
                     </div>
                     <div class="rent-details">
-                        <span><span class="font-weight-bold">€<?= htmlspecialchars($car['price']) ?></span> / dag</span>
-                        <a href="car-detail?id=<?= htmlspecialchars($car['id']) ?>" class="button-primary">Bekijk nu</a>
+                        <span><span class="font-weight-bold">€<?= htmlspecialchars($car['price'] ?? 0) ?></span> / dag</span>
+                        <a href="car-detail?id=<?= htmlspecialchars($car['id'] ?? $i) ?>" class="button-primary">Bekijk nu</a>
                     </div>
                 </div>
             <?php 
@@ -88,7 +91,7 @@ $has_business_data = !empty($business_vehicles);
                             Sport
                         </div>
                     </div>
-                    <img src="assets/images/products/car%20(<?= $i ?>).svg" alt="">
+                    <img src="assets/images/products/car%20(<?= $i ?>).svg" alt="Koenigsegg Agera">
                     <div class="car-specification">
                         <span><img src="assets/images/icons/gas-station.svg" alt="">90l</span>
                         <span><img src="assets/images/icons/car.svg" alt="">Schakel</span>
@@ -100,7 +103,7 @@ $has_business_data = !empty($business_vehicles);
                     </div>
                 </div>
             <?php 
-                endfor; 
+                endfor;
             }
             ?>
         </div>
@@ -289,7 +292,7 @@ $has_business_data = !empty($business_vehicles);
                                 Transport
                             </div>
                         </div>
-                        <img src="assets/images/<?php if($i === 5): ?>bedrijfswagen3.png<?php else: ?>bedrijfswagen2.png<?php endif; ?>" alt="<?php if($i === 5): ?>Citroën Bestelwagen<?php else: ?>Bedrijfswagen<?php endif; ?>" style="height: 120px; object-fit: contain;">
+                        <img src="assets/images/business/<?php if($i === 5): ?>bedrijfswagen3.png<?php else: ?>bedrijfswagen2.png<?php endif; ?>" alt="<?php if($i === 5): ?>Citroën Bestelwagen<?php else: ?>Bedrijfswagen<?php endif; ?>" style="height: 90px; object-fit: contain;">
                         <div class="car-specification">
                             <span><img src="assets/images/icons/gas-station.svg" alt="">80l</span>
                             <span><img src="assets/images/icons/car.svg" alt="">Schakel</span>
