@@ -22,7 +22,7 @@ try {
     // If there's an error or the table doesn't exist yet, use fallback data
     $business_vehicles = [];
     // Fallback will use the static data from the loops below
-}
+} 
 
 // Check if we have data from the database
 $has_car_data = !empty($cars);

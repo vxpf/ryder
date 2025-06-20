@@ -232,9 +232,9 @@ try {
                                 case 'Iveco-Daily':
                                     $brand = 'Iveco-Daily';
                                     break;
-                                case 'Mercedes-Benz-Sprinter':
-                                    $brand = 'Mercedes-Benz Sprinter'; // Exact match with space
-                                    break;
+                                    case 'Mercedes-Benz-Sprinter':
+                                        $imgPath = "assets/images/business/Mercedes-Benz Sprinter.webp";
+                                        break;
                                 case 'Opel-Vivaro':
                                     $brand = 'Opel-Vivaro';
                                     break;
