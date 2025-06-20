@@ -140,6 +140,7 @@ $has_business_data = !empty($business_vehicles);
             ?>
         </div>
         
+        <div id="hidden-cars" style="display: none;">
         <h2 class="section-title">Meer voertuigen</h2>
         <div class="cars" id="recommended-cars">
             <?php 
@@ -195,63 +196,6 @@ $has_business_data = !empty($business_vehicles);
             }
             ?>
         </div>
-        
-        <div id="hidden-cars" style="display: none;">
-            <h2 class="section-title">Meer auto's</h2>
-            <div class="cars">
-                <?php 
-                if ($has_car_data && count($cars) > 8) {
-                    // If we have more than 8 cars from database, show them
-                    for ($i = 8; $i < count($cars); $i++) {
-                        $car = $cars[$i];
-                ?>
-                    <div class="car-details">
-                        <div class="car-brand">
-                            <h3><?= htmlspecialchars($car['brand']) ?></h3>
-                            <div class="car-type">
-                                <?= htmlspecialchars($car['category']) ?>
-                            </div>
-                        </div>
-                        <img src="<?= htmlspecialchars($car['image_url']) ?>" alt="<?= htmlspecialchars($car['brand']) ?>">
-                        <div class="car-specification">
-                            <span><img src="assets/images/icons/gas-station.svg" alt=""><?= htmlspecialchars($car['fuel_capacity']) ?></span>
-                            <span><img src="assets/images/icons/car.svg" alt=""><?= htmlspecialchars($car['transmission']) ?></span>
-                            <span><img src="assets/images/icons/profile-2user.svg" alt=""><?= htmlspecialchars($car['capacity']) ?> Personen</span>
-                        </div>
-                        <div class="rent-details">
-                            <span><span class="font-weight-bold">€<?= htmlspecialchars($car['price']) ?></span> / dag</span>
-                            <a href="car-detail?id=<?= htmlspecialchars($car['id']) ?>" class="button-primary">Bekijk nu</a>
-                        </div>
-                    </div>
-                <?php 
-                    }
-                } else {
-                    // Fallback to static data
-                    for ($i = 8; $i <= 11; $i++) : 
-                ?>
-                    <div class="car-details">
-                        <div class="car-brand">
-                            <h3>Koenigegg</h3>
-                            <div class="car-type">
-                                Sport
-                            </div>
-                        </div>
-                        <img src="assets/images/products/car%20(<?= $i ?>).svg" alt="">
-                        <div class="car-specification">
-                            <span><img src="assets/images/icons/gas-station.svg" alt="">90l</span>
-                            <span><img src="assets/images/icons/car.svg" alt="">Schakel</span>
-                            <span><img src="assets/images/icons/profile-2user.svg" alt="">2 Personen</span>
-                        </div>
-                        <div class="rent-details">
-                            <span><span class="font-weight-bold">€249,00</span> / dag</span>
-                            <a href="car-detail?id=<?= $i ?>" class="button-primary">Bekijk nu</a>
-                        </div>
-                    </div>
-                <?php 
-                    endfor;
-                }
-                ?>
-            </div>
             
             <h2 class="section-title">Meer bedrijfswagens</h2>
             <div class="cars">
@@ -308,6 +252,7 @@ $has_business_data = !empty($business_vehicles);
                 }
                 ?>
             </div>
+        </div>
         </div>
         
         <div class="show-more">
