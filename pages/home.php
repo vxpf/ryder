@@ -42,7 +42,7 @@ $has_business_data = !empty($business_vehicles);
                 <h2>Wij verhuren ook bedrijfswagens</h2>
                 <p>Voor een vaste lage prijs met prettig voordelen.</p>
                 <a href="ons-aanbod" class="button-primary">Huur een bedrijfswagen</a>
-                <img src="assets/images/bedrijfswagen2.png" alt="Volkswagen Busje" class="bedrijfwagen" style="height: 200px; object-fit: contain;">
+                <img src="../assets/images/business/bedrijfswagen2.webp" alt="Volkswagen Busje" class="bedrijfwagen" style="height: 300px; width: auto; object-fit: contain;">
                 <img src="assets/images/header-block-background.svg" alt="" class="background-header-element">
             </div>
         </div>
@@ -111,70 +111,30 @@ $has_business_data = !empty($business_vehicles);
             if ($has_business_data) {
                 // Display first 4 business vehicles from database
                 for ($i = 0; $i < 4 && $i < count($business_vehicles); $i++) {
-                    $vehicle = $business_vehicles[$i];
+                    $car = $business_vehicles[$i];
             ?>
                 <div class="car-details">
                     <div class="car-brand">
-                        <h3><?= htmlspecialchars($vehicle['brand']) ?></h3>
+                        <h3><?= htmlspecialchars($car['brand']) ?></h3>
                         <div class="car-type">
-                            <?= htmlspecialchars($vehicle['category']) ?>
+                            <?= htmlspecialchars($car['category']) ?>
                         </div>
                     </div>
-                    <img src="<?= htmlspecialchars($vehicle['image_url']) ?>" alt="<?= htmlspecialchars($vehicle['brand']) ?>">
+                    <img src="<?= htmlspecialchars($car['image_url']) ?>" alt="<?= htmlspecialchars($car['brand']) ?>">
                     <div class="car-specification">
-                        <span><img src="assets/images/icons/gas-station.svg" alt=""><?= htmlspecialchars($vehicle['fuel_capacity']) ?></span>
-                        <span><img src="assets/images/icons/car.svg" alt=""><?= htmlspecialchars($vehicle['transmission']) ?></span>
-                        <span><img src="assets/images/icons/profile-2user.svg" alt=""><?= htmlspecialchars($vehicle['capacity']) ?> Personen</span>
+                        <span><img src="assets/images/icons/gas-station.svg" alt=""><?= htmlspecialchars($car['fuel_capacity']) ?></span>
+                        <span><img src="assets/images/icons/car.svg" alt=""><?= htmlspecialchars($car['transmission']) ?></span>
+                        <span><img src="assets/images/icons/profile-2user.svg" alt=""><?= htmlspecialchars($car['capacity']) ?> Personen</span>
                     </div>
                     <div class="rent-details">
-                        <span><span class="font-weight-bold">€<?= htmlspecialchars($vehicle['price']) ?></span> / dag</span>
-                        <a href="bedrijfswagen-detail?id=<?= htmlspecialchars($vehicle['id']) ?>" class="button-primary">Bekijk nu</a>
+                        <span><span class="font-weight-bold">€<?= htmlspecialchars($car['price']) ?></span> / dag</span>
+                        <a href="bedrijfswagen-detail?id=<?= htmlspecialchars($car['id']) ?>" class="button-primary">Bekijk nu</a>
                     </div>
                 </div>
             <?php 
                 }
-            } else {
-                // Fallback to static data
+            }
             ?>
-                <div class="car-details">
-                    <div class="car-brand">
-                        <h3>Volkswagen</h3>
-                        <div class="car-type">
-                            Transport
-                        </div>
-                    </div>
-                    <img src="assets/images/bedrijfswagen2.png" alt="Volkswagen Busje" style="height: 140px; object-fit: contain;">
-                    <div class="car-specification">
-                        <span><img src="assets/images/icons/gas-station.svg" alt="">70l</span>
-                        <span><img src="assets/images/icons/car.svg" alt="">Schakel</span>
-                        <span><img src="assets/images/icons/profile-2user.svg" alt="">8 Personen</span>
-                    </div>
-                    <div class="rent-details">
-                        <span><span class="font-weight-bold">€95,00</span> / dag</span>
-                        <a href="bedrijfswagen-detail?id=volkswagen" class="button-primary">Bekijk nu</a>
-                    </div>
-                </div>
-                <?php for ($i = 1; $i <= 3; $i++) : ?>
-                    <div class="car-details">
-                        <div class="car-brand">
-                            <h3><?php if ($i === 1): ?>Citroën<?php else: ?>Bedrijfswagen<?php endif; ?></h3>
-                            <div class="car-type">
-                                Transport
-                            </div>
-                        </div>
-                        <img src="assets/images/<?php if ($i === 1): ?>bedrijfswagen3.png<?php else: ?>bedrijfswagen2.png<?php endif; ?>" alt="<?php if ($i === 1): ?>Citroën Bestelwagen<?php else: ?>Bedrijfswagen<?php endif; ?>" style="height: 120px; object-fit: contain;">
-                        <div class="car-specification">
-                            <span><img src="assets/images/icons/gas-station.svg" alt="">80l</span>
-                            <span><img src="assets/images/icons/car.svg" alt="">Schakel</span>
-                            <span><img src="assets/images/icons/profile-2user.svg" alt="">3 Personen</span>
-                        </div>
-                        <div class="rent-details">
-                            <span><span class="font-weight-bold">€89,00</span> / dag</span>
-                            <a href="bedrijfswagen-detail?id=<?= $i === 1 ? 'citroen' : $i ?>" class="button-primary">Bekijk nu</a>
-                        </div>
-                    </div>
-                <?php endfor; ?>
-            <?php } ?>
         </div>
         
         <h2 class="section-title">Meer voertuigen</h2>
@@ -305,7 +265,7 @@ $has_business_data = !empty($business_vehicles);
                                 <?= htmlspecialchars($vehicle['category']) ?>
                             </div>
                         </div>
-                        <img src="<?= htmlspecialchars($vehicle['image_url']) ?>" alt="<?= htmlspecialchars($vehicle['brand']) ?>">
+                        <img src="assets/images/business/<?= htmlspecialchars($vehicle['brand']) ?>.webp" alt="<?= htmlspecialchars($vehicle['brand']) ?>">
                         <div class="car-specification">
                             <span><img src="assets/images/icons/gas-station.svg" alt=""><?= htmlspecialchars($vehicle['fuel_capacity']) ?></span>
                             <span><img src="assets/images/icons/car.svg" alt=""><?= htmlspecialchars($vehicle['transmission']) ?></span>

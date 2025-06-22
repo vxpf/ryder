@@ -212,7 +212,47 @@ try {
                     </div>
                 <?php else:
                 foreach ($vehicles as $vehicle) :
-                    $imgPath = $vehicle['image_url'];
+                    // Use the image_url from the database for business vehicles
+                    if ($vehicle['type'] === 'business') {
+                        // First get the brand from the image_url
+                        preg_match('/business\/([^\/]+)\.webp/', $vehicle['image_url'], $matches);
+                        if (isset($matches[1])) {
+                            $brand = $matches[1];
+                            // Special cases for business vehicles
+                            switch($brand) {
+                                case 'Peugeot-Expert':
+                                    $brand = 'Peugot-Expert';
+                                    break;
+                                case 'Volkswagen-Transporter':
+                                    $brand = 'Volkswagen-Transporter';
+                                    break;
+                                case 'Ford-Transit-Custom':
+                                    $brand = 'Ford-Transit-Custom';
+                                    break;
+                                case 'Iveco-Daily':
+                                    $brand = 'Iveco-Daily';
+                                    break;
+                                case 'Mercedes-Benz-Sprinter':
+                                    $brand = 'Mercedes-Benz Sprinter'; // Exact match with space
+                                    break;
+                                case 'Opel-Vivaro':
+                                    $brand = 'Opel-Vivaro';
+                                    break;
+                                case 'Renault-Trafic':
+                                    $brand = 'Renault-Trafic';
+                                    break;
+                            }
+                            $imgPath = "assets/images/business/{$brand}.webp";
+                        } else {
+                            $imgPath = $vehicle['image_url'];
+                        }
+                        // Replace 'company' with 'business' if needed
+                        $imgPath = str_replace('company/', 'business/', $imgPath);
+                        // Ensure the extension is .webp
+                        $imgPath = str_replace('.jpg', '.webp', $imgPath);
+                    } else {
+                        $imgPath = $vehicle['image_url'];
+                    }
                     $detailUrl = ($vehicle['type'] === 'regular') ? "car-detail?id=" . $vehicle['id'] : "bedrijfswagen-detail?id=" . $vehicle['id'];
                     $reserveUrl = "/reserveren?car_id=" . $vehicle['id'];
                     
