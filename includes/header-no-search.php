@@ -30,7 +30,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Rydr</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/dark-mode.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/Ricon.png" sizes="32x32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">

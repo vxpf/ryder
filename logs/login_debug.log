@@ -201,3 +201,85 @@ Login attempt with email: jbjb2000@gmail.com
 Account table check: User found
 Password verified for account table user
 Redirecting regular user to homepage
+Login attempt at 2025-06-13 14:36:00
+Login attempt with email: jbjb2000@gmail.com
+Account table check: User found
+Password verified for account table user
+Redirecting regular user to homepage
+Login attempt at 2025-06-17 11:21:49
+Login attempt with email: jbjb2000@gmail.com
+Account table check: User found
+Password verified for account table user
+Redirecting regular user to homepage
+Login attempt at 2025-06-17 14:41:55
+Login attempt with email: jbjb2000@gmail.com
+Account table check: User found
+Password verified for account table user
+Redirecting regular user to homepage
+Login attempt at 2025-06-18 09:17:28
+Login attempt with email: jbjb2000@gmail.com
+Account table check: User found
+Password verified for account table user
+Redirecting regular user to homepage
+Login attempt at 2025-06-20 14:41:56
+Login attempt with email: admin@carrental.com
+Account table check: User not found
+Checking users table
+Users table check: User found
+User found in users table but password incorrect
+Special case for admin@carrental.com
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-20 14:41:59
+Login attempt with email: admin@example.com
+Account table check: User not found
+Checking users table
+Users table check: User not found
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-20 14:42:04
+Login attempt with email: admin@carrental.com
+Account table check: User not found
+Checking users table
+Users table check: User found
+User found in users table but password incorrect
+Special case for admin@carrental.com
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-20 14:42:07
+Login attempt with email: admin@example.com
+Account table check: User not found
+Checking users table
+Users table check: User not found
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-20 14:42:48
+Login attempt with email: admin@carrental.com
+Account table check: User not found
+Checking users table
+Users table check: User found
+User found in users table but password incorrect
+Special case for admin@carrental.com
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-20 14:43:15
+Login attempt with email: jbjb2000@gmail.com
+Account table check: User found
+Password verified for account table user
+Redirecting regular user to homepage
+Login attempt at 2025-06-20 14:43:22
+Login attempt with email: admin@carrental.com
+Account table check: User not found
+Checking users table
+Users table check: User found
+User found in users table but password incorrect
+Special case for admin@carrental.com
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-20 14:43:31
+Login attempt with email: admin@carrental.com
+Account table check: User not found
+Checking users table
+Users table check: User found
+User found in users table but password incorrect
+Special case for admin@carrental.com
+Invalid credentials, redirecting to login form
+Login attempt at 2025-06-22 11:19:36
+Login attempt with email: jbjb2000@gmail.com
+Account table check: User found
+Password verified for account table user
+Redirecting regular user to homepage

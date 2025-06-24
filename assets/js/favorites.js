@@ -19,7 +19,7 @@ function initFavoriteButtons() {
             const isLoggedIn = document.body.classList.contains('logged-in');
             
             if (!isLoggedIn) {
-                // Show login prompt
+                
                 showLoginPrompt();
                 return;
             }

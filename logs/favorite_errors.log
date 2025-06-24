@@ -1533,6 +1533,7 @@
 [2025-05-27 09:11:52] Processing request for car_id: 5 and user_id: 4
 [2025-05-27 09:11:52] Check favorite result: 1 rows found
 [2025-05-27 09:11:52] Success: Car removed from favorites
+<<<<<<< HEAD
 [2025-06-10 14:03:36] Request received. Method: POST
 [2025-06-10 14:03:36] POST data: Array
 (
@@ -1567,3 +1568,74 @@
 [2025-06-10 14:03:40] Processing request for car_id: 6 and user_id: 4
 [2025-06-10 14:03:40] Check favorite result: 1 rows found
 [2025-06-10 14:03:40] Success: Car removed from favorites
+=======
+[2025-06-17 11:37:18] Request received. Method: POST
+[2025-06-17 11:37:18] POST data: Array
+(
+    [car_id] => 10
+)
+
+[2025-06-17 11:37:18] Session data: Array
+(
+    [id] => 5
+    [email] => boudewijnvantveer@gmail.com
+)
+
+[2025-06-17 11:37:18] Processing request for car_id: 10 and user_id: 5
+[2025-06-17 11:37:18] Check favorite result: 0 rows found
+[2025-06-17 11:37:19] Success: Car added to favorites
+>>>>>>> d9049c867ba211256a5d519270a770515f8e378f
+[2025-06-22 11:34:28] Request received. Method: POST
+[2025-06-22 11:34:28] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-06-22 11:34:28] Session data: Array
+(
+    [redirect_after_login] => /reserveren?car_id=10
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_6857cab91b1c3.png
+    [login_verified] => 1
+)
+
+[2025-06-22 11:34:28] Processing request for car_id: 2 and user_id: 4
+[2025-06-22 11:34:28] Check favorite result: 1 rows found
+[2025-06-22 11:34:28] Success: Car removed from favorites
+[2025-06-22 11:34:29] Request received. Method: POST
+[2025-06-22 11:34:29] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-06-22 11:34:29] Session data: Array
+(
+    [redirect_after_login] => /reserveren?car_id=10
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_6857cab91b1c3.png
+    [login_verified] => 1
+)
+
+[2025-06-22 11:34:29] Processing request for car_id: 2 and user_id: 4
+[2025-06-22 11:34:29] Check favorite result: 0 rows found
+[2025-06-22 11:34:29] Success: Car added to favorites
+[2025-06-22 11:34:35] Request received. Method: POST
+[2025-06-22 11:34:35] POST data: Array
+(
+    [car_id] => 2
+)
+
+[2025-06-22 11:34:35] Session data: Array
+(
+    [redirect_after_login] => /reserveren?car_id=10
+    [id] => 4
+    [email] => jbjb2000@gmail.com
+    [profile_photo] => /assets/uploads/profile_photos/4_6857cab91b1c3.png
+    [login_verified] => 1
+)
+
+[2025-06-22 11:34:35] Processing request for car_id: 2 and user_id: 4
+[2025-06-22 11:34:35] Check favorite result: 1 rows found
+[2025-06-22 11:34:35] Success: Car removed from favorites

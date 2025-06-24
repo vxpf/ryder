@@ -141,7 +141,91 @@ $car_full_name = trim($car['brand'] . ' ' . ($car['model'] ?? ''));
     </div>
 </main>
 
+<!-- REVIEWS SECTION START -->
+<div class="reviews-container">
+    <div class="reviews-card">
+        <div class="reviews-header">
+            <div class="reviews-title">
+                <span class="reviews-label">Reviews</span>
+                <span class="reviews-count"><?php
+                    $review_count = 0;
+                    try {
+                        $stmt = $conn->prepare("SELECT COUNT(*) FROM reviews WHERE car_id = :car_id");
+                        $stmt->bindParam(':car_id', $car['id']);
+                        $stmt->execute();
+                        $review_count = $stmt->fetchColumn();
+                    } catch (Exception $e) {}
+                    echo $review_count;
+                ?></span>
+            </div>
+            <a href="#" class="view-all-btn">View All</a>
+        </div>
+        
+        <div class="reviews-list">
+            <?php
+            try {
+                $stmt = $conn->prepare("SELECT r.*, u.name, u.profile_photo, u.subtitle FROM reviews r JOIN users u ON r.user_id = u.id WHERE r.car_id = :car_id ORDER BY r.created_at DESC LIMIT 2");
+                $stmt->bindParam(':car_id', $car['id']);
+                $stmt->execute();
+                $reviews = $stmt->fetchAll();
+            } catch (Exception $e) { $reviews = []; }
+            
+            if (empty($reviews)) {
+                // Show sample reviews for demonstration
+                $reviews = [
+                    [
+                        'name' => 'Alex Stanton',
+                        'subtitle' => 'CEO at Bukalapak',
+                        'profile_photo' => '/assets/images/Profil.png',
+                        'rating' => 4,
+                        'comment' => 'We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.',
+                        'created_at' => '2024-06-15 10:30:00'
+                    ],
+                    [
+                        'name' => 'Skylar Dias',
+                        'subtitle' => 'CEO at Amazon',
+                        'profile_photo' => '/assets/images/Profil.png',
+                        'rating' => 4,
+                        'comment' => 'We are greatly helped by the services of the MORENT Application. Morent has low prices and also a wide variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.',
+                        'created_at' => '2024-06-14 15:45:00'
+                    ]
+                ];
+            }
+            
+            foreach ($reviews as $review):
+                $avatar = !empty($review['profile_photo']) ? htmlspecialchars($review['profile_photo']) : '/assets/images/Profil.png';
+                $name = htmlspecialchars($review['name'] ?? 'Gebruiker');
+                $subtitle = htmlspecialchars($review['subtitle'] ?? '');
+                $date = date('d M Y', strtotime($review['created_at']));
+                $rating = (int)$review['rating'];
+                $comment = nl2br(htmlspecialchars($review['comment']));
+            ?>
+                <div class="review-item">
+                    <div class="review-left">
+                        <img class="review-avatar" src="<?= $avatar ?>" alt="Profile picture">
+                        <div class="review-info">
+                            <div class="review-name"><?= $name ?></div>
+                            <div class="review-subtitle"><?= $subtitle ?></div>
+                            <div class="review-date"><?= $date ?></div>
+                        </div>
+                    </div>
+                    <div class="review-right">
+                        <div class="review-rating">
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                <i class="fa fa-star<?= $i > $rating ? '-o' : '' ?>"></i>
+                            <?php endfor; ?>
+                        </div>
+                        <div class="review-text"><?= $comment ?></div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<!-- REVIEWS SECTION END -->
+
 <style>
+/* ... keep existing code (existing styles) */
 .price-display {
     display: flex;
     align-items: center;
@@ -225,6 +309,171 @@ $car_full_name = trim($car['brand'] . ' ' . ($car['model'] ?? ''));
 }
 .call-to-action .row {
     margin-bottom: 15px;
+}
+
+/* Updated Reviews Section - Matching the design exactly */
+.reviews-container {
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+.reviews-card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.reviews-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.reviews-label {
+    background: #3563E9;
+    color: #FFFFFF;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.reviews-count {
+    background: #F6F7F9;
+    color: #3563E9;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.view-all-btn {
+    color: #3563E9;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.view-all-btn:hover {
+    opacity: 0.8;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.review-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.review-left {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    min-width: 200px;
+}
+
+.review-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.review-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.review-name {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1A202C;
+}
+
+.review-subtitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #90A3BF;
+}
+
+.review-date {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #90A3BF;
+}
+
+.review-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.review-rating {
+    display: flex;
+    gap: 4px;
+    color: #FBAD39;
+    font-size: 16px;
+}
+
+.review-rating .fa-star-o {
+    color: #E0E4E7;
+}
+
+.review-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #596780;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .reviews-container {
+        padding: 0 16px;
+    }
+    
+    .reviews-card {
+        padding: 16px;
+    }
+    
+    .review-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .review-left {
+        min-width: auto;
+    }
+    
+    .reviews-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
 }
 </style>
 

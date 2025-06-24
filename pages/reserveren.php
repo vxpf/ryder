@@ -123,6 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $phone = $_POST['phone'] ?? '';
     $address = $_POST['address'] ?? '';
+    $payment_method = $_POST['payment_method'] ?? '';
+    $card_number = $_POST['card_number'] ?? '';
+    $expiry_date = $_POST['expiry_date'] ?? '';
+    $card_holder = $_POST['card_holder'] ?? '';
+    $cvc = $_POST['cvc'] ?? '';
+    $marketing_consent = isset($_POST['marketing_consent']);
+    $terms_consent = isset($_POST['terms_consent']);
     
     // Validate form data
     $errors = [];
@@ -168,6 +175,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Adres is verplicht.";
     }
     
+    if (empty($payment_method)) {
+        $errors[] = "Selecteer een betaalmethode.";
+    }
+    
+    if ($payment_method === 'credit_card') {
+        if (empty($card_number)) {
+            $errors[] = "Kaartnummer is verplicht.";
+        }
+        if (empty($expiry_date)) {
+            $errors[] = "Vervaldatum is verplicht.";
+        }
+        if (empty($card_holder)) {
+            $errors[] = "Kaarthouder naam is verplicht.";
+        }
+        if (empty($cvc)) {
+            $errors[] = "CVC is verplicht.";
+        }
+    }
+    
+    if (!$terms_consent) {
+        $errors[] = "U moet akkoord gaan met de algemene voorwaarden.";
+    }
+    
     // Check if car is already booked for the selected dates
     if (empty($errors)) {
         try {
@@ -211,14 +241,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Insert booking
             $insert_stmt = $conn->prepare("
-                INSERT INTO bookings (user_id, car_id, start_date, end_date, total_price, status)
-                VALUES (:user_id, :car_id, :start_date, :end_date, :total_price, 'confirmed')
+                INSERT INTO bookings (user_id, car_id, start_date, end_date, total_price, status, payment_method)
+                VALUES (:user_id, :car_id, :start_date, :end_date, :total_price, 'confirmed', :payment_method)
             ");
             $insert_stmt->bindParam(':user_id', $user_id);
             $insert_stmt->bindParam(':car_id', $car_id);
             $insert_stmt->bindParam(':start_date', $pickup_date);
             $insert_stmt->bindParam(':end_date', $return_date);
             $insert_stmt->bindParam(':total_price', $total_price);
+            $insert_stmt->bindParam(':payment_method', $payment_method);
             $insert_stmt->execute();
             
             $booking_id = $conn->lastInsertId();
@@ -345,12 +376,19 @@ function ensureTablesExist($conn) {
                     end_date DATE NOT NULL,
                     total_price DECIMAL(10,2) NOT NULL,
                     status ENUM('pending', 'confirmed', 'cancelled', 'completed') DEFAULT 'pending',
+                    payment_method VARCHAR(50) DEFAULT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
                     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
                 )
             ");
+        } else {
+            // Check if payment_method column exists, add if not
+            $columnCheck = $conn->query("SHOW COLUMNS FROM bookings LIKE 'payment_method'");
+            if ($columnCheck->rowCount() == 0) {
+                $conn->exec("ALTER TABLE bookings ADD COLUMN payment_method VARCHAR(50) DEFAULT NULL");
+            }
         }
         
         // Check user_profiles table
@@ -512,9 +550,117 @@ ensureTablesExist($conn);
                         <textarea id="address" name="address" required><?= htmlspecialchars($user_data['address']) ?></textarea>
                     </div>
                     
+                    <!-- Payment Method Section -->
+                    <div class="payment-section">
+                        <h3>Betaalmethode</h3>
+                        <p class="payment-subtitle">Selecteer uw betaalmethode</p>
+                        <div class="step-indicator">Stap 2 van 3</div>
+                        
+                        <div class="payment-methods">
+                            <!-- Credit Card Option -->
+                            <div class="payment-option">
+                                <label class="payment-method-label">
+                                    <input type="radio" name="payment_method" value="credit_card" required>
+                                    <span class="payment-method-text">
+                                        <i class="fas fa-credit-card"></i>
+                                        Credit Card
+                                    </span>
+                                    <div class="payment-logos">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iIzAwNTFBNSIvPgo8cGF0aCBkPSJNMTYuNSA5LjVIMTlWMTQuNUgxNi41VjkuNVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMS41IDEwLjVIMjNWMTMuNUgyMS41VjEwLjVaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" alt="Visa">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iI0VCMDAxQiIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjEyIiByPSI1IiBmaWxsPSIjRkY1RjAwIi8+CjxjaXJjbGUgY3g9IjI1IiBjeT0iMTIiIHI9IjUiIGZpbGw9IiNGRkY1RjAiLz4KPC9zdmc+Cg==" alt="Mastercard">
+                                    </div>
+                                </label>
+                                
+                                <div class="credit-card-details">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card_number">Kaartnummer</label>
+                                            <input type="text" id="card_number" name="card_number" placeholder="1234 1234 1234 1234" maxlength="19">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="expiry_date">Vervaldatum</label>
+                                            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/JJ" maxlength="5">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card_holder">Kaarthouder</label>
+                                            <input type="text" id="card_holder" name="card_holder" placeholder="Kaarthouder">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvc">CVC</label>
+                                            <input type="text" id="cvc" name="cvc" placeholder="CVC" maxlength="3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- PayPal Option -->
+                            <div class="payment-option">
+                                <label class="payment-method-label">
+                                    <input type="radio" name="payment_method" value="paypal">
+                                    <span class="payment-method-text">
+                                        <i class="fab fa-paypal"></i>
+                                        PayPal
+                                    </span>
+                                    <div class="payment-logos">
+                                        <!-- PayPal Logo -->
+                                        <table border="0" cellpadding="10" cellspacing="0" align="center"><tbody><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/nl/webapps/mpp/paypal-popup" title="Hoe PayPal Werkt" onclick="javascript:window.open('https://www.paypal.com/nl/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo" /></a></td></tr></tbody></table>
+                                        <!-- PayPal Logo -->
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <!-- Bitcoin Option -->
+                            <div class="payment-option">
+                                <label class="payment-method-label">
+                                    <input type="radio" name="payment_method" value="bitcoin">
+                                    <span class="payment-method-text">
+                                        <i class="fab fa-bitcoin"></i>
+                                        Bitcoin
+                                    </span>
+                                    <div class="payment-logos">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iI0Y3OTMxQSIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjEyIiByPSI2IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTkgOVYxNUgyMVY5SDE5WiIgZmlsbD0iI0Y3OTMxQSIvPgo8L3N2Zz4K" alt="Bitcoin">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Confirmation Section -->
+                    <div class="confirmation-section">
+                        <h3>Bevestiging</h3>
+                        <p class="confirmation-subtitle">We zijn bijna aan het eind. Nog twee clicks en u bent klaar!</p>
+                        <div class="step-indicator">Stap 3 van 3</div>
+                        
+                        <div class="confirmation-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="marketing_consent">
+                                <span class="checkmark"></span>
+                                Ik ga akkoord met het verzenden van marketing- en nieuwsbriefmails. Geen spam, beloofd!
+                            </label>
+                            
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms_consent" required>
+                                <span class="checkmark"></span>
+                                Ik ga akkoord met onze algemene voorwaarden en privacybeleid.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Notice -->
+                    <div class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Al uw gegevens zijn veilig</h4>
+                            <p>We zijn using the most advanced security to provide you the best experience ever.</p>
+                        </div>
+                    </div>
+                    
                     <div class="form-actions">
-                        <button type="submit" class="button-primary" <?= (!$car_id) ? 'disabled' : '' ?>>
-                            <i class="fas fa-check"></i> Reservering voltooien
+                        <button type="submit" class="button-primary rent-now-btn" <?= (!$car_id) ? 'disabled' : '' ?>>
+                            Rent Now
                         </button>
                     </div>
                 </form>
@@ -766,6 +912,195 @@ h3 {
     resize: vertical;
 }
 
+/* Payment Section Styles */
+.payment-section {
+    margin: 30px 0;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.payment-subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.step-indicator {
+    color: #999;
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-option {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.payment-option:hover {
+    border-color: #3563E9;
+}
+
+.payment-method-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-height: 56px;
+    box-sizing: border-box;
+}
+
+.payment-method-label:hover {
+    background-color: #f8f9fa;
+}
+
+.payment-method-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.payment-method-text i {
+    font-size: 18px;
+    color: #3563E9;
+}
+
+.payment-logos {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.payment-logos img {
+    height: 24px;
+    width: auto;
+}
+
+.payment-logos table {
+    height: 24px;
+    margin: 0;
+    padding: 0;
+}
+.payment-logos table img {
+    height: 24px;
+    width: auto;
+    display: block;
+}
+.payment-logos table td {
+    padding: 0 !important;
+    border: none;
+}
+
+input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+}
+
+.credit-card-details {
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    display: none;
+}
+
+.payment-option:has(input[type="radio"]:checked) .credit-card-details {
+    display: block;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Confirmation Section */
+.confirmation-section {
+    margin: 30px 0;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.confirmation-subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.confirmation-checkboxes {
+    margin-top: 20px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.checkmark {
+    position: relative;
+    margin-top: 2px;
+}
+
+/* Security Notice */
+.security-notice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.security-notice i {
+    font-size: 24px;
+    color: #3563E9;
+}
+
+.security-notice h4 {
+    margin: 0 0 5px 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.security-notice p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
 .form-actions {
     margin-top: 30px;
 }
@@ -784,6 +1119,13 @@ h3 {
     gap: 8px;
     text-decoration: none;
     transition: background-color 0.2s, transform 0.2s;
+}
+
+.rent-now-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 24px;
+    font-size: 18px;
 }
 
 .button-primary:hover {
@@ -812,6 +1154,21 @@ h3 {
     .car-features {
         justify-content: center;
     }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .payment-method-label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .payment-logos {
+        align-self: flex-end;
+    }
 }
 </style>
 
@@ -822,6 +1179,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const daysCountElement = document.getElementById('days-count');
     const totalPriceElement = document.getElementById('total-price');
     const dailyPrice = <?= $car['price'] ?>;
+    
+    // Payment method handling
+    const paymentMethodRadios = document.querySelectorAll('input[name="payment_method"]');
+    const creditCardDetails = document.querySelector('.credit-card-details');
+    const cardInputs = ['card_number', 'expiry_date', 'card_holder', 'cvc'];
+    
+    // Format card number input
+    const cardNumberInput = document.getElementById('card_number');
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            if (formattedValue !== e.target.value) {
+                e.target.value = formattedValue;
+            }
+        });
+    }
+    
+    // Format expiry date input
+    const expiryDateInput = document.getElementById('expiry_date');
+    if (expiryDateInput) {
+        expiryDateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+    
+    // CVC input - numbers only
+    const cvcInput = document.getElementById('cvc');
+    if (cvcInput) {
+        cvcInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+    }
+    
+    // Handle payment method selection
+    paymentMethodRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'credit_card') {
+                creditCardDetails.style.display = 'block';
+                // Make card inputs required
+                cardInputs.forEach(inputName => {
+                    const input = document.getElementById(inputName);
+                    if (input) input.required = true;
+                });
+            } else {
+                creditCardDetails.style.display = 'none';
+                // Remove required from card inputs
+                cardInputs.forEach(inputName => {
+                    const input = document.getElementById(inputName);
+                    if (input) input.required = false;
+                });
+            }
+        });
+    });
     
     // Set min dates
     const today = new Date();
@@ -889,4 +1304,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php require "includes/footer.php" ?> 
+<?php require "includes/footer.php" ?>

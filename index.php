@@ -30,7 +30,7 @@ if ($path === 'logout') {
 
 if ($path === 'login-handler') {
     require_once __DIR__ . '/actions/login.php';
-    exit;    //tes
+    exit;    
 }
 
 if ($path === 'register-handler') {
