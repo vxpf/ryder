@@ -40,6 +40,7 @@ $category_filter = isset($_GET['category']) ? (is_array($_GET['category']) ? $_G
 $capacity_filter = isset($_GET['capacity']) ? (is_array($_GET['capacity']) ? $_GET['capacity'] : explode(',', $_GET['capacity'])) : [];
 $price_filter = isset($_GET['price']) ? intval($_GET['price']) : 150;
 $availability_filter = isset($_GET['available']) ? ($_GET['available'] === '1') : false;
+$vehicle_type = isset($_GET['type']) ? $_GET['type'] : ''; // 'business' of leeg voor alle typen
 
 // Count cars by category
 $category_counts = [];
@@ -69,6 +70,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 // Build SQL query based on filters
 $sql = "SELECT * FROM cars WHERE 1=1";
 $params = [];
+
+// Apply vehicle type filter
+if ($vehicle_type === 'business') {
+    $sql .= " AND type = 'business'";
+} else if ($vehicle_type === 'regular') {
+    $sql .= " AND (type = 'regular' OR type IS NULL OR type = '')";
+}
 
 // Apply category filter
 if (!empty($category_filter)) {

@@ -67,7 +67,7 @@ $vehicle_full_name = trim($vehicle['brand'] . ' ' . ($vehicle['model'] ?? ''));
             <div class="advertorial">
                 <h2><?= htmlspecialchars($vehicle_full_name) ?> - Reliable and practical</h2>
                 <p>The ideal business vehicle for your professional needs</p>
-                <img src="<?= htmlspecialchars($vehicle['image_url']) ?>" alt="<?= htmlspecialchars($vehicle_full_name) ?>" style="height: 240px; object-fit: contain;">
+                <img src="<?= htmlspecialchars($vehicle['image_url']) ?>" alt="<?= htmlspecialchars($vehicle_full_name) ?>" style="height: 300px; object-fit: contain;">
                 <img src="assets/images/header-circle-background.svg" alt="" class="background-header-element">
             </div>
         </div>
