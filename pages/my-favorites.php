@@ -43,7 +43,7 @@ try {
         $favorites = $stmt->fetchAll();
     }
 } catch (PDOException $e) {
-    // Log error and continue with empty favorites
+    
     error_log("Error in my-favorites.php: " . $e->getMessage());
     $favorites = [];
 }
@@ -52,7 +52,7 @@ $pageTitle = "Mijn Favorieten";
 include_once __DIR__ . '/../includes/header.php';
 ?>
 
-<!-- Add Font Awesome for icons -->
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 <style>

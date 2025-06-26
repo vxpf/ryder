@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Price slider functionality
+   
     const priceSlider = document.getElementById('price-range');
     const priceValue = document.getElementById('price-value');
     
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Reset filters button
+    
     const resetButton = document.getElementById('reset-filters');
     if (resetButton) {
         resetButton.addEventListener('click', function(e) {
@@ -31,19 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle form submission with AJAX for a smoother experience
+    
     const filterForm = document.getElementById('filter-form');
     if (filterForm) {
         filterForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
+           
             const formData = new FormData(filterForm);
             
-            // Build query string
+           
             const params = new URLSearchParams();
             
-            // Handle category checkboxes
+           
             const categoryCheckboxes = document.querySelectorAll('input[name="category[]"]:checked');
             if (categoryCheckboxes.length > 0) {
                 categoryCheckboxes.forEach(checkbox => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             
-            // Handle capacity checkboxes
+          
             const capacityCheckboxes = document.querySelectorAll('input[name="capacity[]"]:checked');
             if (capacityCheckboxes.length > 0) {
                 capacityCheckboxes.forEach(checkbox => {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             
-            // Handle price slider
+            
             if (priceSlider) {
                 params.append('price', priceSlider.value);
             }

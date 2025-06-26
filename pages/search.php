@@ -10,7 +10,7 @@ $cars = [];
 
 if (!empty($search_term)) {
     try {
-        // Search in both regular cars and business vehicles
+      
         $stmt = $conn->prepare("
             SELECT * FROM cars 
             WHERE (brand LIKE :search OR model LIKE :search OR category LIKE :search)

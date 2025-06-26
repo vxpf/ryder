@@ -934,7 +934,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const agentMessage = document.createElement('div');
                     agentMessage.className = 'message agent-message';
                     
-                    // Generate a response based on the user's message
+                   
                     let response = getAutomaticResponse(message);
                     
                     agentMessage.innerHTML = `
